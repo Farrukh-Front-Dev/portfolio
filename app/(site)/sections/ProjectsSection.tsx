@@ -1,18 +1,29 @@
+"use client";
+
 import Image from "next/image";
 import content from "../content/content.json";
+import { useParallax } from "../lib/useParallax";
 
 export default function ProjectsSection() {
   const { projects, labels } = content;
+  const { ref: sectionRef, offset: parallaxOffset } = useParallax({ speed: 0.08 });
 
   return (
     <section
+      ref={sectionRef}
       id="projects"
       className="py-16 sm:py-24 md:py-32 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative"
     >
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 tracking-tight
+      <h2 
+        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 tracking-tight
                      bg-linear-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300
                      bg-clip-text text-transparent
-                     animate-fadeInUp">
+                     animate-fadeInUp"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.1}px)`,
+          willChange: "transform"
+        }}
+      >
         {labels.projects}
       </h2>
 
@@ -31,7 +42,11 @@ export default function ProjectsSection() {
                        hover:-translate-y-2
                        animate-fadeInUp
                        flex flex-col"
-            style={{ animationDelay: `${index * 0.15}s` }}
+            style={{ 
+              animationDelay: `${index * 0.15}s`,
+              transform: `translateY(${parallaxOffset * (0.08 - index * 0.02)}px)`,
+              willChange: "transform"
+            }}
           >
             {/* Project Image - Full width on mobile */}
             <div className="relative w-full h-48 sm:h-56 bg-linear-to-br from-gray-200/50 dark:from-gray-700/50 to-gray-300/50 dark:to-gray-800/50 overflow-hidden">

@@ -2,23 +2,50 @@
 
 import Image from "next/image";
 import content from "../content/content.json";
+import { useParallax } from "../lib/useParallax";
 
 export default function HeroSection() {
   const { hero } = content;
+  const { ref: sectionRef, offset: parallaxOffset } = useParallax({ speed: 0.08 });
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 gap-8 py-10 sm:py-16 md:py-20 overflow-hidden"
     >
-      {/* Animated gradient blobs */}
-      <div className="absolute -top-40 -right-40 w-60 sm:w-80 h-60 sm:h-80 bg-purple-500/20 dark:bg-purple-600/20 rounded-full blur-3xl animate-blob"></div>
-      <div className="absolute -bottom-40 -left-40 w-60 sm:w-80 h-60 sm:h-80 bg-blue-500/20 dark:bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-      <div className="absolute top-1/2 left-1/2 w-60 sm:w-80 h-60 sm:h-80 bg-pink-500/20 dark:bg-pink-600/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+      {/* Parallax gradient blobs - background layer */}
+      <div 
+        className="absolute -top-40 -right-40 w-60 sm:w-80 h-60 sm:h-80 bg-purple-500/20 dark:bg-purple-600/20 rounded-full blur-3xl animate-blob"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.5}px)`,
+          willChange: "transform"
+        }}
+      />
+      <div 
+        className="absolute -bottom-40 -left-40 w-60 sm:w-80 h-60 sm:h-80 bg-blue-500/20 dark:bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-2000"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.3}px)`,
+          willChange: "transform"
+        }}
+      />
+      <div 
+        className="absolute top-1/2 left-1/2 w-60 sm:w-80 h-60 sm:h-80 bg-pink-500/20 dark:bg-pink-600/20 rounded-full blur-3xl animate-blob animation-delay-4000"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.4}px) translate(-50%, -50%)`,
+          willChange: "transform"
+        }}
+      />
 
-      {/* Left: Image (mobile tepada) */}
-      <div className="flex-1 flex justify-center md:justify-start items-center order-1 md:order-1 w-full md:w-auto">
-        <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden
+      {/* Left: Image (mobile tepada) - Parallax effect */}
+      <div 
+        className="flex-1 flex justify-center md:justify-start items-center order-1 md:order-1 w-full md:w-auto"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.15}px)`,
+          willChange: "transform"
+        }}
+      >
+        <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden
                         backdrop-blur-3xl 
                         bg-white/10 dark:bg-white/5
                         border border-white/40 dark:border-white/20
@@ -41,8 +68,14 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Right: Text (mobile pastda) */}
-      <div className="flex-1 flex flex-col justify-center items-start order-2 md:order-2 w-full md:w-auto">
+      {/* Right: Text (mobile pastda) - Parallax effect */}
+      <div 
+        className="flex-1 flex flex-col justify-center items-start order-2 md:order-2 w-full md:w-auto"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.08}px)`,
+          willChange: "transform"
+        }}
+      >
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight
                        bg-linear-to-r from-gray-900 via-gray-800 to-gray-700
                        dark:from-white dark:via-gray-100 dark:to-gray-300

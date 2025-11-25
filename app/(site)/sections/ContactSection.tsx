@@ -1,7 +1,11 @@
+"use client";
+
 import content from "../content/content.json";
+import { useParallax } from "../lib/useParallax";
 
 export default function ContactSection() {
   const { contact, labels } = content;
+  const { ref: sectionRef, offset: parallaxOffset } = useParallax({ speed: 0.08 });
 
   const contactLinks = [
     {
@@ -48,18 +52,31 @@ export default function ContactSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="contact"
       className="py-16 sm:py-24 md:py-32 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative"
     >
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight
+      <h2 
+        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight
                      bg-linear-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300
                      bg-clip-text text-transparent
-                     animate-fadeInUp">
+                     animate-fadeInUp"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.1}px)`,
+          willChange: "transform"
+        }}
+      >
         {labels.getInTouch}
       </h2>
 
-      <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 md:mb-16 max-w-2xl leading-relaxed
-                    animate-fadeInUp animation-delay-200">
+      <p 
+        className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 md:mb-16 max-w-2xl leading-relaxed
+                    animate-fadeInUp animation-delay-200"
+        style={{
+          transform: `translateY(${parallaxOffset * 0.08}px)`,
+          willChange: "transform"
+        }}
+      >
         {labels.alwaysOpen}
       </p>
 
@@ -82,7 +99,11 @@ export default function ContactSection() {
                        hover:-translate-y-1
                        flex flex-col items-center text-center
                        animate-fadeInUp"
-            style={{ animationDelay: `${index * 0.1}s` }}
+            style={{ 
+              animationDelay: `${index * 0.1}s`,
+              transform: `translateY(${parallaxOffset * (0.06 - index * 0.01)}px)`,
+              willChange: "transform"
+            }}
           >
             <div className="text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors mb-4">
               {link.icon}

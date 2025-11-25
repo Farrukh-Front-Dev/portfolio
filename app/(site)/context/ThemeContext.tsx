@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { initPerformanceMonitoring } from "../lib/performance";
 
 interface ThemeContextType {
   darkMode: boolean;
@@ -27,6 +28,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     } else {
       document.documentElement.classList.remove("dark");
     }
+
+    // Initialize performance monitoring
+    initPerformanceMonitoring();
   }, []);
 
   // apply class on html element when darkMode changes
