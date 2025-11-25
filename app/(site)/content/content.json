@@ -1,0 +1,63 @@
+{
+  "labels": {
+    "projects": "Projects",
+    "techStack": "Tech Stack",
+    "getInTouch": "Get in Touch",
+    "viewCode": "View Code",
+    "viewDemo": "View Demo",
+    "alwaysOpen": "I'm always open to new opportunities and collaborations. Feel free to reach out through any of the channels below!",
+    "copyright": "© 2024 Farrukh. All rights reserved."
+  },
+  "hero": {
+    "title": "Hi, I'm Farrukh",
+    "subtitle": "Full-stack developer passionate about creating clean, scalable web applications using modern technologies. I deliver high-quality solutions for both frontend and backend challenges.",
+    "cta": "View My Projects"
+  },
+  "projects": [
+    {
+      "name": "Portfolio Website",
+      "description": "Personal portfolio built with Next.js, Tailwind CSS, and TypeScript. Features dark/light mode toggle, glassmorphism design, liquid glass effects, and fully responsive layouts.",
+      "link": "https://github.com/farrukh/portfolio",
+      "demo": "#hero"
+    },
+    {
+      "name": "E-commerce Platform",
+      "description": "Full-stack e-commerce application with Node.js backend, React frontend, and MongoDB database. Includes user authentication, shopping cart functionality, and payment integration.",
+      "link": "https://github.com/farrukh/ecommerce",
+      "demo": "#projects"
+    },
+    {
+      "name": "Blog Application",
+      "description": "MERN stack blog platform with user authentication, post management, comment system, and real-time notifications. Built with modern web development best practices.",
+      "link": "https://github.com/farrukh/blog",
+      "demo": "#projects"
+    }
+  ],
+  "tech": [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Express",
+    "Tailwind CSS",
+    "MongoDB",
+    "PostgreSQL",
+    "Docker",
+    "Git/GitHub",
+    "Framer Motion",
+    "Redux"
+  ],
+  "contact": {
+    "email": "farrukh@example.com",
+    "phone": "+998 90 123 45 67",
+    "linkedin": "https://www.linkedin.com/in/farrukhdjumayev",
+    "telegram": "http://t.me/Farrukh_Djumayev",
+    "github": "https://github.com/farrukh"
+  },
+  "sidebar": [
+    { "id": "hero", "label": "Home" },
+    { "id": "projects", "label": "Projects" },
+    { "id": "tech", "label": "Tech Stack" },
+    { "id": "contact", "label": "Contact" }
+  ]
+}

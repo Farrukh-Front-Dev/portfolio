@@ -1,32 +1,233 @@
 "use client";
 import { useState, useEffect } from "react";
+import ToggleButton from "./ToggleButton";
+import content from "../content/content.json";
 
 export default function Sidebar() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>("hero");
+  const { sidebar } = content;
 
+  const getLabel = (id: string) => {
+    const labelMap: { [key: string]: string } = {
+      hero: "Me",
+      projects: "Projects",
+      tech: "About",
+      contact: "Contact"
+    };
+    return labelMap[id] || "";
+  };
+
+  // Detect which section is in view
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-  }, [darkMode]);
+    const handleScroll = () => {
+      const sections = ["hero", "projects", "tech", "contact"];
+      let currentSection = "hero";
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if section is in the upper half of viewport
+          if (rect.top <= window.innerHeight * 0.4) {
+            currentSection = sectionId;
+          }
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const getIcon = (id: string) => {
+    const iconProps = {
+      className: "w-6 h-6 lg:w-7 lg:h-7 relative z-10",
+      fill: "currentColor",
+      viewBox: "0 0 24 24"
+    };
+
+    switch (id) {
+      case "hero":
+        return (
+          <svg {...iconProps}>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+          </svg>
+        );
+      case "projects":
+        return (
+          <svg {...iconProps}>
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+        );
+      case "tech":
+        return (
+          <svg {...iconProps}>
+            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
+          </svg>
+        );
+      case "contact":
+        return (
+          <svg {...iconProps}>
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
-    <aside className="fixed right-0 top-0 h-screen w-20 flex flex-col justify-between items-center p-4
-      bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl shadow-lg
-      text-gray-900 dark:bg-gray-900/30 dark:border-gray-700 dark:text-white z-50"
+    <aside
+      className="fixed bottom-0 left-0 right-0 md:right-0 md:left-auto md:top-0 md:bottom-auto
+                 h-20 w-full md:h-screen md:w-20 lg:w-24
+                 flex flex-row md:flex-col justify-center md:justify-start items-center p-2 md:p-4 md:pt-8
+                 text-gray-900 dark:text-white
+                 z-50
+                 pointer-events-none"
+      style={{
+        perspective: "1000px"
+      }}
     >
-      <div className="flex flex-col gap-6 mt-10">
-        <a href="#hero" className="hover:scale-110 transition-all duration-200">H</a>
-        <a href="#projects" className="hover:scale-110 transition-all duration-200">P</a>
-        <a href="#tech" className="hover:scale-110 transition-all duration-200">T</a>
-        <a href="#contact" className="hover:scale-110 transition-all duration-200">C</a>
+      {/* Navigation Links */}
+      <div className="flex md:flex-col gap-4 md:gap-5 lg:gap-7 pointer-events-auto">
+        {sidebar.map((item) => (
+          <div 
+            key={item.id} 
+            className="relative group"
+            onMouseEnter={() => setHoveredId(item.id)}
+            onMouseLeave={() => setHoveredId(null)}
+          >
+            {/* Tooltip - Premium Glassmorphism */}
+            <div
+              className={`absolute bottom-16 md:bottom-auto md:right-24 lg:right-28 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0
+                           px-4 lg:px-5 py-3 rounded-2xl
+                           bg-white/25 dark:bg-white/15
+                           backdrop-blur-2xl
+                           border border-white/50 dark:border-white/40
+                           shadow-2xl dark:shadow-3xl
+                           whitespace-nowrap
+                           text-xs lg:text-sm font-bold tracking-wide
+                           pointer-events-none
+                           transition-all duration-400 ease-out
+                           ${
+                             hoveredId === item.id
+                               ? "opacity-100 scale-100 visible"
+                               : "opacity-0 scale-90 invisible"
+                           }`}
+              style={{
+                textShadow: "0 0 20px rgba(0,0,0,0.1)",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%)"
+              }}
+            >
+              <span className="block text-gray-900 dark:text-white drop-shadow-md">{getLabel(item.id)}</span>
+              {/* Arrow pointing to icon */}
+              <div
+                className={`absolute w-0 h-0 border-l-4 border-l-white/50 dark:border-l-white/40 border-y-4 border-y-transparent
+                           -bottom-2 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:left-auto md:right-0 md:translate-x-3
+                           ${hoveredId === item.id ? "block" : "hidden"}`}
+              ></div>
+            </div>
+
+            {/* Navigation Icon - Advanced Liquid Glass */}
+            <a
+              href={`#${item.id}`}
+              className={`relative p-3 lg:p-4 rounded-full
+                         transition-all duration-400 ease-out
+                         ${activeSection === item.id ? "hover:scale-115 scale-110" : "hover:scale-125"}
+                         hover:-translate-y-3
+                         group/link
+                         block
+                         will-change-transform
+                         ${activeSection === item.id ? "scale-110" : "scale-100"}`}
+              style={{
+                transform: activeSection === item.id 
+                  ? "scale(1.1) translateZ(20px)" 
+                  : hoveredId === item.id 
+                    ? "translateZ(20px)" 
+                    : "translateZ(0px)",
+                filter: activeSection === item.id
+                  ? "drop-shadow(0 20px 30px rgba(59, 130, 246, 0.5)) drop-shadow(0 8px 20px rgba(168, 85, 247, 0.3))"
+                  : hoveredId === item.id 
+                    ? "drop-shadow(0 25px 35px rgba(59, 130, 246, 0.4)) drop-shadow(0 10px 25px rgba(168, 85, 247, 0.3))" 
+                    : "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15))"
+              }}
+            >
+              {/* Background Layer - Liquid Glass */}
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                {/* Base glass layer */}
+                <div 
+                  className="absolute inset-0
+                             bg-white/20 dark:bg-white/12
+                             backdrop-blur-3xl
+                             border border-white/50 dark:border-white/40
+                             shadow-xl dark:shadow-2xl
+                             transition-all duration-400"
+                  style={{
+                    boxShadow: activeSection === item.id
+                      ? "0 0 40px rgba(59, 130, 246, 0.7), inset 0 1px 0 rgba(255,255,255,0.6), 0 12px 40px rgba(31, 38, 135, 0.5)"
+                      : hoveredId === item.id
+                      ? "0 0 30px rgba(59, 130, 246, 0.5), inset 0 1px 0 rgba(255,255,255,0.5), 0 8px 32px rgba(31, 38, 135, 0.37)"
+                      : "0 8px 32px rgba(31, 38, 135, 0.2), inset 0 1px 0 rgba(255,255,255,0.3)"
+                  }}
+                />
+                
+                {/* Gradient overlay for liquid effect */}
+                <div 
+                  className={`absolute inset-0 transition-opacity duration-700 ${
+                    activeSection === item.id ? "opacity-80" : "opacity-0 group-hover/link:opacity-50"
+                  }`}
+                  style={{
+                    background: "radial-gradient(135% 135% at 50% 0%, rgba(59, 130, 246, 0.15) 0%, rgba(168, 85, 247, 0.1) 50%, transparent 100%)"
+                  }}
+                />
+              </div>
+
+              {/* Icon Container */}
+              <div className="relative z-20 flex items-center justify-center text-gray-700 dark:text-gray-200 transition-colors duration-700">
+                {getIcon(item.id)}
+              </div>
+
+              {/* Enhanced Glow Effect - 3D */}
+              <div
+                className={`absolute inset-0 rounded-full transition-opacity duration-700 pointer-events-none ${
+                  activeSection === item.id ? "opacity-100" : "opacity-0 group-hover/link:opacity-40"
+                }`}
+                style={{
+                  background: activeSection === item.id
+                    ? "radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.4) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 70%)"
+                    : "radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.2) 0%, rgba(168, 85, 247, 0.1) 40%, transparent 70%)",
+                  filter: "blur(20px)"
+                }}
+              />
+
+              {/* Shimmer effect on hover */}
+              <div
+                className={`absolute inset-0 rounded-full transition-opacity duration-700 pointer-events-none ${
+                  hoveredId === item.id ? "opacity-30 animate-shimmer" : "opacity-0"
+                }`}
+                style={{
+                  background: "linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%)",
+                  backgroundSize: "200% 200%",
+                  filter: "blur(1px)"
+                }}
+              />
+            </a>
+          </div>
+        ))}
       </div>
 
-      <div className="flex flex-col gap-4 mb-10">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 rounded-full bg-white/20 dark:bg-gray-700/30 hover:scale-110 transition-all duration-200"
+      {/* Theme Toggle Button - Styled to match */}
+      <div className="flex gap-4 mt-4 md:mt-auto md:mb-6 lg:mb-8 pointer-events-auto">
+        <div
+          onMouseEnter={() => setHoveredId("theme")}
+          onMouseLeave={() => setHoveredId(null)}
         >
-          {darkMode ? "☀️" : "🌙"}
-        </button>
+          <ToggleButton />
+        </div>
       </div>
     </aside>
   );
