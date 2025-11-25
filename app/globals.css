@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+.bg-glass {
+  background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  backdrop-filter: blur(10px); /* blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;          /* scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05); /* track background, semi-transparent */
+  backdrop-filter: blur(10px);           /* glass effect */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2); /* thumb color */
+  backdrop-filter: blur(10px);           /* glass effect */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* subtle border */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
