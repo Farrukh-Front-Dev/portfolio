@@ -1,5 +1,7 @@
 "use client";
 import { useTheme } from "../context/ThemeContext";
+import { IoSunnyOutline } from "react-icons/io5";
+import { FaRegMoon } from "react-icons/fa";
 
 export default function ToggleButton() {
   const { darkMode, toggleDarkMode } = useTheme();
@@ -32,30 +34,18 @@ export default function ToggleButton() {
       {/* Icon Container */}
       <div className="relative z-20 flex items-center justify-center transition-colors duration-700">
         {/* Sun Icon for Dark Mode */}
-        <svg
-          className={`w-6 h-6 text-yellow-400 absolute transition-all duration-300 ${
-            darkMode ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-0 rotate-90"
-          }`}
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 2a1 1 0 011 1v2a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.536l1.414 1.414a1 1 0 001.414-1.414l-1.414-1.414a1 1 0 00-1.414 1.414zm2.828-2.828l1.414-1.414a1 1 0 00-1.414-1.414l-1.414 1.414a1 1 0 001.414 1.414zm0-4.243L13.536 5.464a1 1 0 10-1.414-1.414L12.95 6.293a1 1 0 001.414 1.414zM5.464 5.464a1 1 0 00-1.414 1.414L5.464 8.293a1 1 0 001.414-1.414L5.464 5.464zm0 9.172L4.05 13.707a1 1 0 101.414 1.414l1.414-1.414a1 1 0 00-1.414-1.414zM18 10a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1zM2 10a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1zm15.657-5.657a1 1 0 00-1.414 1.414l1.414 1.414a1 1 0 001.414-1.414l-1.414-1.414zm-2.121-2.121a1 1 0 10-1.414 1.414l1.414 1.414a1 1 0 001.414-1.414l-1.414-1.414zM5 10a1 1 0 011-1h2a1 1 0 110 2H6a1 1 0 01-1-1z"
-            clipRule="evenodd"
+        {darkMode && (
+          <IoSunnyOutline 
+            className="w-6 h-6 text-yellow-400 absolute transition-all duration-300 opacity-100 scale-100 rotate-0"
           />
-        </svg>
+        )}
 
         {/* Moon Icon for Light Mode */}
-        <svg
-          className={`w-6 h-6 text-blue-400 absolute transition-all duration-300 ${
-            !darkMode ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-0 rotate-90"
-          }`}
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-        </svg>
+        {!darkMode && (
+          <FaRegMoon 
+            className="w-6 h-6 text-blue-400 absolute transition-all duration-300 opacity-100 scale-100 rotate-0"
+          />
+        )}
       </div>
 
       {/* Enhanced Glow Effect */}

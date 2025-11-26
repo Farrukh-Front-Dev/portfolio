@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import ToggleButton from "./ToggleButton";
 import content from "../content/content.json";
+import { FaUser, FaLaptopCode, FaEnvelope, FaHome } from "react-icons/fa";
 
 export default function Sidebar() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -46,35 +47,17 @@ export default function Sidebar() {
   const getIcon = (id: string) => {
     const iconProps = {
       className: "w-6 h-6 lg:w-7 lg:h-7 relative z-10",
-      fill: "currentColor",
-      viewBox: "0 0 24 24"
     };
 
     switch (id) {
       case "hero":
-        return (
-          <svg {...iconProps}>
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-          </svg>
-        );
+        return <FaHome {...iconProps} />;
       case "projects":
-        return (
-          <svg {...iconProps}>
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-          </svg>
-        );
+        return <FaLaptopCode {...iconProps} />;
       case "tech":
-        return (
-          <svg {...iconProps}>
-            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
-          </svg>
-        );
+        return <FaUser {...iconProps} />;
       case "contact":
-        return (
-          <svg {...iconProps}>
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-          </svg>
-        );
+        return <FaEnvelope {...iconProps} />;
       default:
         return null;
     }
