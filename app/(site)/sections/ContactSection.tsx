@@ -79,42 +79,75 @@ export default function ContactSection() {
       >
         {labels.alwaysOpen}
       </p>
+      
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         {contactLinks.map((link, index) => (
           <a
-            key={link.label}
-            href={link.href}
-            target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-            rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-            className="group p-6 rounded-xl
-                       bg-white/10 dark:bg-white/5
-                       backdrop-blur-xl
-                       border border-gray-300/30 dark:border-white/20
-                       hover:border-gray-400/60 dark:hover:border-white/40
-                       shadow-md dark:shadow-lg
-                       hover:shadow-lg dark:hover:shadow-2xl
-                       transition-all duration-300 ease-out
-                       hover:bg-white/20 dark:hover:bg-white/10
-                       hover:-translate-y-1
-                       flex flex-col items-center text-center
-                       animate-fadeInUp"
-            style={{ 
-              animationDelay: `${index * 0.1}s`,
-              transform: `translateY(${parallaxOffset * (0.06 - index * 0.01)}px)`,
-              willChange: "transform"
-            }}
-          >
-            <div className="text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors mb-4">
-              {link.icon}
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-colors">
-              {link.label}
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 break-all">
-              {link.value}
-            </p>
-          </a>
+  key={link.label}
+  href={link.href}
+  target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+  rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+  className="group relative p-6 rounded-2xl overflow-hidden
+             transition-all duration-600 ease-[cubic-bezier(.22,1,.36,1)]
+             hover:-translate-y-2 will-change-transform"
+  style={{
+    animationDelay: `${index * 0.1}s`,
+    transform: `translateY(${parallaxOffset * (0.06 - index * 0.01)}px)`
+  }}
+>
+
+  {/* GLASS BASE */}
+  <div
+    className="absolute inset-0 rounded-2xl backdrop-blur-3xl"
+    style={{
+      background:
+        "linear-gradient(150deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08) 70%)",
+      border: "1px solid rgba(255,255,255,0.45)",
+      boxShadow:
+        "0 20px 40px rgba(0,0,0,0.22), inset 0 2px 4px rgba(255,255,255,0.4)"
+    }}
+  />
+
+  {/* LIQUID LIGHT REFLECTION */}
+  <div
+    className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-700"
+    style={{
+      background:
+        "radial-gradient(circle at 30% 10%, rgba(255,255,255,0.35), rgba(255,255,255,0.05) 70%)",
+      opacity: "0.5",
+      filter: "blur(18px)"
+    }}
+  />
+
+  {/* HOVER BLOOM */}
+  <div
+    className={`absolute inset-0 rounded-2xl transition-opacity duration-700 pointer-events-none
+                ${"group-hover:opacity-70 opacity-0"}`}
+    style={{
+      background:
+        "radial-gradient(circle at 40% 30%, rgba(59,130,246,0.3), rgba(168,85,247,0.25), transparent 70%)",
+      filter: "blur(26px)"
+    }}
+  />
+
+  {/* CONTENT */}
+  <div className="relative z-20 flex flex-col items-center text-center">
+    <div className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors mb-4">
+      {link.icon}
+    </div>
+
+    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors mb-2">
+      {link.label}
+    </h3>
+
+    <p className="text-sm text-gray-700 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-300 transition-colors break-all">
+      {link.value}
+    </p>
+  </div>
+
+</a>
+
         ))}
       </div>
 
