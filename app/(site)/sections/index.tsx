@@ -1,10 +1,10 @@
 "use client";
 
 import { memo } from "react";
-import HeroSection from "./sections/HeroSection";
-import ProjectsSection from "./sections/ProjectsSection";
-import TechSection from "./sections/TechSection";
-import ContactSection from "./sections/ContactSection";
+import HeroSection from "./HeroSection";
+import ProjectsSection from "./ProjectsSection";
+import TechSection from "./TechSection";
+import ContactSection from "./ContactSection";
 
 // Memoize expensive sections to prevent unnecessary re-renders
 const MemoizedHeroSection = memo(HeroSection);
