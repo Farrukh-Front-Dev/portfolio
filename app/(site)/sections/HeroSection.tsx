@@ -3,6 +3,9 @@
 import Image from "next/image";
 import content from "../content/content.json";
 import { useParallax } from "../lib/useParallax";
+import HeroImage from "../components/HeroImage";
+import { BsDownload } from "react-icons/bs";
+import { memo } from "react";
 
 export default function HeroSection() {
   const { hero } = content;
@@ -38,35 +41,7 @@ export default function HeroSection() {
       />
 
       {/* Left: Image (mobile tepada) - Parallax effect */}
-      <div 
-        className="flex-1 flex justify-center md:justify-start items-center order-1 md:order-1 w-full md:w-auto"
-        style={{
-          transform: `translateY(${parallaxOffset * 0.15}px)`,
-          willChange: "transform"
-        }}
-      >
-        <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden
-                        backdrop-blur-3xl 
-                        bg-white/10 dark:bg-white/5
-                        border border-white/40 dark:border-white/20
-                        shadow-2xl dark:shadow-3xl
-                        hover:shadow-3xl dark:hover:shadow-4xl
-                        hover:bg-white/20 dark:hover:bg-white/10
-                        hover:border-white/60 dark:hover:border-white/40
-                        transition-all duration-500 ease-out
-                        group
-                        animate-float">
-          <Image
-            src="/farrukhPic.jpeg"
-            alt="Farrukh"
-            fill
-            className="object-cover rounded-3xl group-hover:scale-110 transition-transform duration-500"
-            priority
-          />
-          {/* Glassmorphism overlay */}
-          <div className="absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-black/10 dark:from-white/10 dark:to-black/20 rounded-3xl pointer-events-none"></div>
-        </div>
-      </div>
+      <HeroImage parallaxOffset={parallaxOffset} />
 
       {/* Right: Text (mobile pastda) - Parallax effect */}
       <div 
@@ -108,6 +83,35 @@ export default function HeroSection() {
             {hero.cta}
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </span>
+        </a>
+        
+        {/* Resume Download Button - Liquid Glass Style */}
+        <a
+          href="/Farrukh'sResume.pdf"
+          download
+          className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base
+                     bg-linear-to-br from-cyan-400/20 via-blue-400/10 to-purple-400/20
+                     dark:from-cyan-400/15 dark:via-blue-400/5 dark:to-purple-400/15
+                     backdrop-blur-xl
+                     border border-cyan-300/40 dark:border-cyan-300/30
+                     text-gray-900 dark:text-white
+                     shadow-lg dark:shadow-2xl
+                     hover:shadow-2xl dark:hover:shadow-3xl
+                     hover:from-cyan-400/30 dark:hover:from-cyan-400/25
+                     hover:via-blue-400/20 dark:hover:via-blue-400/15
+                     hover:to-purple-400/30 dark:hover:to-purple-400/25
+                     hover:border-cyan-300/60 dark:hover:border-cyan-300/50
+                     hover:-translate-y-1
+                     transition-all duration-300 ease-out
+                     group
+                     animate-fadeInUp animation-delay-600"
+        >
+          <span className="flex items-center gap-2">
+            Resume
+            <svg className="w-5 h-5 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <BsDownload />
             </svg>
           </span>
         </a>
