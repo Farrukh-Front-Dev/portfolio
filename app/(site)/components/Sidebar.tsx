@@ -67,9 +67,9 @@ export default function Sidebar() {
     <aside
       className="fixed bottom-0 left-0 right-0 md:right-0 md:left-auto md:top-0 md:bottom-auto
                  h-20 w-full md:h-screen md:w-20 lg:w-24
-                 flex flex-row md:flex-col justify-center md:justify-start items-center p-2 md:p-4 md:pt-8
+                 flex flex-row md:flex-col justify-center md:justify-center items-center p-2 md:p-4 md:pt-8
                  text-gray-900 dark:text-white
-                 z-50
+                 z-70
                  pointer-events-none"
       style={{
         perspective: "1000px"
@@ -84,14 +84,12 @@ export default function Sidebar() {
             onMouseEnter={() => setHoveredId(item.id)}
             onMouseLeave={() => setHoveredId(null)}
           >
-            {/* Tooltip - Premium Glassmorphism */}
+            {/* Tooltip - Premium Liquid Glass */}
             <div
               className={`absolute bottom-16 md:bottom-auto md:right-24 lg:right-28 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0
                            px-4 lg:px-5 py-3 rounded-2xl
-                           bg-white/25 dark:bg-white/15
-                           backdrop-blur-2xl
-                           border border-white/50 dark:border-white/40
-                           shadow-2xl dark:shadow-3xl
+                           backdrop-blur-xl
+                           border border-white/40 dark:border-white/30
                            whitespace-nowrap
                            text-xs lg:text-sm font-bold tracking-wide
                            pointer-events-none
@@ -102,16 +100,22 @@ export default function Sidebar() {
                                : "opacity-0 scale-90 invisible"
                            }`}
               style={{
-                textShadow: "0 0 20px rgba(0,0,0,0.1)",
-                background: "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%)"
+                background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%)",
+                boxShadow: hoveredId === item.id
+                  ? "0 8px 32px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255,255,255,0.4)"
+                  : "0 4px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
+                textShadow: "0 0 20px rgba(0,0,0,0.1)"
               }}
             >
-              <span className="block text-gray-900 dark:text-white drop-shadow-md">{getLabel(item.id)}</span>
+              <span className="block text-gray-900 dark:text-gray-100 drop-shadow-md">{getLabel(item.id)}</span>
               {/* Arrow pointing to icon */}
               <div
-                className={`absolute w-0 h-0 border-l-4 border-l-white/50 dark:border-l-white/40 border-y-4 border-y-transparent
+                className={`absolute w-0 h-0 border-l-4 border-y-4 border-y-transparent
                            -bottom-2 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:left-auto md:right-0 md:translate-x-3
                            ${hoveredId === item.id ? "block" : "hidden"}`}
+                style={{
+                  borderLeftColor: "rgba(255,255,255,0.3)"
+                }}
               ></div>
             </div>
 
