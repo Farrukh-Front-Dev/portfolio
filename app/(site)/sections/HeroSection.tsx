@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
+
 import content from "../content/content.json";
 import { useParallax } from "../lib/useParallax";
 import HeroImage from "../components/HeroImage";
 import { BsDownload } from "react-icons/bs";
-import { memo } from "react";
+
 
 export default function HeroSection() {
   const { hero } = content;

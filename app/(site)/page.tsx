@@ -12,9 +12,9 @@ export default function Page() {
       <PerformanceIndicator />
       <main>
         <HeroSection />
-        <ProjectsSection />
         <TechSection />
-        <ContactSection />
+        <ProjectsSection />
+        {/* <ContactSection /> */}
       </main>
     </>
   );

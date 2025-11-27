@@ -56,8 +56,8 @@
   },
   "sidebar": [
     { "id": "hero", "label": "Home" },
-    { "id": "projects", "label": "Projects" },
     { "id": "tech", "label": "Tech Stack" },
+    { "id": "projects", "label": "Projects" },
     { "id": "contact", "label": "Contact" }
   ]
 }
