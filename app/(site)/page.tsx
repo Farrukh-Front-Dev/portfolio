@@ -14,7 +14,7 @@ export default function Page() {
         <HeroSection />
         <TechSection />
         <ProjectsSection />
-        {/* <ContactSection /> */}
+        <ContactSection />
       </main>
     </>
   );
