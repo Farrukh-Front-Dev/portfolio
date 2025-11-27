@@ -69,14 +69,14 @@ export default function Sidebar() {
                  h-20 w-full md:h-screen md:w-20 lg:w-24
                  flex flex-row md:flex-col justify-center md:justify-center items-center p-2 md:p-4 md:pt-8
                  text-gray-900 dark:text-white
-                 z-70
+                 z-50
                  pointer-events-none"
       style={{
         perspective: "1000px",
       }}
     >
       {/* Navigation Links */}
-      <div className="flex md:flex-col gap-4 md:gap-5 lg:gap-7 pointer-events-auto">
+      <div className="flex lg:pt-96 md:flex-col gap-4 md:gap-5 lg:gap-7 pointer-events-auto">
         {sidebar.map((item) => (
           <div
             key={item.id}
@@ -241,14 +241,19 @@ export default function Sidebar() {
       </div>
 
       {/* Theme Toggle Button - Styled to match */}
-      <div className="flex gap-4 mt-4 md:mt-auto md:mb-6 lg:mb-8 pointer-events-auto">
-        <div
-          onMouseEnter={() => setHoveredId("theme")}
-          onMouseLeave={() => setHoveredId(null)}
-        >
-          <ToggleButton />
-        </div>
-      </div>
+      {/* Theme Toggle Button */}
+<div className="pointer-events-auto">
+  {/* Mobile: fixed bottom-right */}
+  <div className="md:hidden fixed bottom-5 right-4 z-50">
+    <ToggleButton />
+  </div>
+
+  {/* Desktop: fixed top-right */}
+  <div className="hidden md:block fixed top-4 right-4 z-50">
+    <ToggleButton />
+  </div>
+</div>
+
     </aside>
   );
 }
