@@ -19,7 +19,7 @@ html body {
 }
 
 html body::before {
-  content: "goooo";
+  content: "";
   position: fixed;
   top: 0;
   left: 0;

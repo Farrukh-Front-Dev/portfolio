@@ -76,7 +76,7 @@ export default function Sidebar() {
       }}
     >
       {/* Navigation Links */}
-      <div className="flex lg:pt-96 md:flex-col gap-4 md:gap-5 lg:gap-7 pointer-events-auto">
+      <div className="flex md:flex-col gap-4 md:gap-5 lg:gap-7 pointer-events-auto">
         {sidebar.map((item) => (
           <div
             key={item.id}

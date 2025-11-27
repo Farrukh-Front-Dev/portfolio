@@ -29,10 +29,11 @@ export default function HeroText({ title, subtitle, ctaText, resumeHref }: HeroT
       </p>
 
       {/* Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 mt-2">
-        <CTAButton href="#tech" text={ctaText} />
-        <ResumeButton href={resumeHref} text="Resume" />
-      </div>
+      <div className="flex flex-row gap-3 mt-2 flex-wrap">
+  <CTAButton href="#tech" text={ctaText} />
+  <ResumeButton href={resumeHref} text="Resume" />
+</div>
+
     </div>
   );
 }
