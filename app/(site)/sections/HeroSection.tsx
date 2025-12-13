@@ -18,9 +18,10 @@ export default function HeroSection() {
       {/* Text + Buttons as single component */}
       <HeroText 
         title={hero.title} 
-        subtitle={hero.subtitle} 
+        subtitlePrefix={hero.subtitlePrefix} 
+        subtitleSuffix={hero.subtitleSuffix} 
         ctaText={hero.cta} 
-        resumeHref="/Farrukh'sResume.pdf" 
+        resumeHref="/FarrukhsResume.pdf" 
       />
     </section>
   );

@@ -9,10 +9,14 @@
     "copyright": "© 2024 Farrukh. All rights reserved."
   },
   "hero": {
-    "title": "Hi, I'm Farrukh",
-    "subtitle": "Full-stack developer passionate about creating clean, scalable web applications using modern technologies. I deliver high-quality solutions for both frontend and backend challenges.",
-    "cta": "About Me"
-  },
+  "title": "Farrukh — Frontend Engineer, React Specialist",
+  "subtitlePrefix": "I build",
+  "subtitleSuffix": "with clean design, robust structure, and modern JavaScript tooling.",
+  "cta": "View Projects"
+},
+
+
+
   "projects": [
     {
       "name": "Portfolio Website",

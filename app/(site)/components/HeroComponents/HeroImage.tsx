@@ -1,40 +1,51 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
 
 export default function HeroImage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const rotateX = (-y / (rect.height / 2)) * 10; // max 10 deg
+    const rotateY = (x / (rect.width / 2)) * 10;
+
+    containerRef.current.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!containerRef.current) return;
+    containerRef.current.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
+  };
+
   return (
     <div className="flex-1 flex justify-center md:justify-start items-center order-1 md:order-1 w-full md:w-auto">
-      {/* Liquid Glass Capsule */}
-      <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden
-                      bg-white/10 dark:bg-white/5
-                      backdrop-blur-3xl
-                      border border-white/30 dark:border-white/20
-                      shadow-2xl dark:shadow-3xl
-                      hover:shadow-3xl dark:hover:shadow-4xl
-                      hover:bg-white/20 dark:hover:bg-white/10
-                      hover:border-white/50 dark:hover:border-white/30
-                      transition-all duration-500 ease-out
-                      group
-                      animate-float">
-
-        {/* Hero Image */}
+      <div
+        ref={containerRef}
+        className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72
+                   rounded-full overflow-hidden
+                   bg-white/5 dark:bg-white/10
+                   border border-white/20 dark:border-white/10
+                   shadow-lg dark:shadow-xl
+                   backdrop-blur-xl
+                   transition-transform duration-500 ease-out
+                   transform-style-preserve-3d"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         <Image
           src="/farrukhPic.jpeg"
           alt="Farrukh"
           fill
-          className="object-cover rounded-3xl group-hover:scale-110 transition-transform duration-500"
+          className="object-cover"
           priority
         />
-
-        {/* Glassmorphism overlay */}
-        <div className="absolute inset-0 rounded-3xl pointer-events-none
-                        bg-linear-to-br from-white/5 via-transparent to-black/10
-                        dark:from-white/10 dark:to-black/20"></div>
-
-        {/* Shine effect */}
-        <span className="absolute -top-1 -left-16 w-20 h-40 bg-white/30 dark:bg-white/20 
-                         rounded-full blur-2xl transform rotate-45 scale-150 animate-pulse pointer-events-none"></span>
       </div>
     </div>
   );
