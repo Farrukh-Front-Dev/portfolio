@@ -26,14 +26,14 @@ export default function HeroText({
         className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-bold
                    bg-linear-to-r from-gray-900 via-gray-800 to-gray-700
                    dark:from-white dark:via-gray-100 dark:to-gray-300
-                   bg-clip-text text-transparent animate-fadeInUp"
+                   bg-clip-text text-transparent animate-fadeInUp pb-2"
       >
         {title}
       </h1>
 
       {/* Subtitle with rotating text */}
       <p
-        className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed
+        className="text-base font-medium sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed
                    animate-fadeInUp animation-delay-200"
       >
         <span>{subtitlePrefix} </span>

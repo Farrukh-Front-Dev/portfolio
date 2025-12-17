@@ -37,20 +37,92 @@
       "demo": "#projects"
     }
   ],
-  "tech": [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Express",
-    "Tailwind CSS",
-    "MongoDB",
-    "PostgreSQL",
-    "Docker",
-    "Git/GitHub",
-    "Framer Motion",
-    "Redux"
-  ],
+
+  
+  "about": {
+    "intro": {
+      "heading": "About Me",
+      "text": "Frontend Engineer specializing in React and Next.js, focused on building modern, scalable, and maintainable web applications with clean architecture and strong UI engineering practices."
+    },
+
+    "skills": {
+      "groups": [
+        {
+          "title": "Frontend Core",
+          "items": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "JavaScript (ES6+)"
+          ]
+        },
+        {
+          "title": "State & Animation",
+          "items": [
+            "Redux",
+            "Framer Motion"
+          ]
+        },
+        {
+          "title": "Styling & UI",
+          "items": [
+            "Tailwind CSS",
+            "ShadCN UI",
+            "Responsive Design"
+          ]
+        },
+        {
+          "title": "Backend & Data",
+          "items": [
+            "Node.js",
+            "Express",
+            "MongoDB",
+            "PostgreSQL"
+          ]
+        },
+        {
+          "title": "Tooling & DevOps",
+          "items": [
+            "Git / GitHub",
+            "Docker",
+            "Linux (Ubuntu)"
+          ]
+        }
+      ]
+    },
+
+    "timeline": [
+      {
+        "type": "experience",
+        "title": "Frontend Developer",
+        "organization": "Independent",
+        "period": "2024 — Present",
+        "description": [
+          "Developed and delivered multiple real-world frontend projects covering UI implementation, state management, REST API integration, and production deployment.",
+          "Focused on scalable component architecture, clean code principles, and performance-oriented UI engineering."
+        ]
+      },
+      {
+        "type": "education",
+        "title": "Software Engineering Program",
+        "organization": "School 21 / 42 Network",
+        "period": "2024 — Present",
+        "description": [
+          "Currently expanding backend development, system-level programming, and problem-solving skills through project-based engineering education."
+        ]
+      },
+      {
+        "type": "education",
+        "title": "Frontend Development Program",
+        "organization": "Najot Ta'lim",
+        "period": "Completed",
+        "description": [
+          "Completed structured training in React, Next.js, TypeScript, state management, and modern frontend engineering practices."
+        ]
+      }
+    ]
+  },
+
   "contact": {
     "email": "farrukh.front.dev@gmail.com",
     "phone": "+9988888114171",
@@ -60,7 +132,7 @@
   },
   "sidebar": [
     { "id": "hero", "label": "Home" },
-    { "id": "tech", "label": "Tech Stack" },
+    { "id": "about", "label": "About" },
     { "id": "projects", "label": "Projects" },
     { "id": "contact", "label": "Contact" }
   ]

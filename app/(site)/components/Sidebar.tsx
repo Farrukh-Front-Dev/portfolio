@@ -12,7 +12,7 @@ export default function Sidebar() {
   const getLabel = (id: string) => {
     const labelMap: { [key: string]: string } = {
       hero: "Home",
-      tech: "About",
+      about: "About",
       projects: "Projects",
       contact: "Contact",
     };
@@ -52,7 +52,7 @@ export default function Sidebar() {
     switch (id) {
       case "hero":
         return <FaHome {...iconProps} />;
-      case "tech":
+      case "about":
         return <FaUser {...iconProps} />;
       case "projects":
         return <FaLaptopCode {...iconProps} />;
