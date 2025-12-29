@@ -22,7 +22,7 @@ export default function Sidebar() {
   // Detect which section is in view
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "tech", "projects", "contact"];
+      const sections = ["hero", "about", "projects", "contact"];
       let currentSection = "hero";
 
       for (const sectionId of sections) {
