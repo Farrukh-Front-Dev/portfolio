@@ -1,6 +1,7 @@
 "use client";
 import { useTheme } from "../context/ThemeContext";
 import { IoSunnyOutline } from "react-icons/io5";
+import { BsMoonStarsFill } from "react-icons/bs";
 import { FaRegMoon } from "react-icons/fa";
 
 export default function ToggleButton() {
@@ -42,8 +43,8 @@ export default function ToggleButton() {
 
         {/* Moon Icon for Light Mode */}
         {!darkMode && (
-          <FaRegMoon 
-            className="w-6 h-6 text-blue-400 absolute transition-all duration-300 opacity-100 scale-100 rotate-0"
+          <BsMoonStarsFill 
+            className="w-6 h-6 text-gray-800 absolute transition-all duration-300 opacity-100 scale-100 rotate-0"
           />
         )}
       </div>
