@@ -65,7 +65,7 @@ export default function HeroText({
 
       {/* Buttons */}
       <div className="flex flex-row gap-3 mt-2 flex-wrap">
-        <CTAButton href="#tech" text={ctaText} />
+        <CTAButton href="#about" text={ctaText} />
         <ResumeButton href={resumeHref} text="Resume" />
       </div>
     </div>

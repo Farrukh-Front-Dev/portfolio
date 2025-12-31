@@ -53,7 +53,7 @@ export default function ToggleButton() {
   {/* Moon icon */}
   <BsMoonStarsFill
     className={`
-      w-5 h-5 text-gray-700 absolute
+      w-4 h-4 text-gray-700 absolute
       transition-all duration-700 ease-in-out
       ${darkMode
         ? "opacity-0 -rotate-180 scale-50"
