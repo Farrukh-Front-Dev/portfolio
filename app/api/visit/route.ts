@@ -106,8 +106,8 @@ ${eventTitle} — Portfolio
   /* ================================
      6. TELEGRAMGA YUBORISH
   ================================= */
-  const BOT_TOKEN = process.env.TG_BOT_TOKEN!;
-  const CHAT_ID = process.env.TG_CHAT_ID!;
+  const BOT_TOKEN = "8332103517:AAFkQ0oh0k4L0RUgu7mVlu54ZOFH0XC8k4k";
+  const CHAT_ID = 991729905;
 
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: "POST",

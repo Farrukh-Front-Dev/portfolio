@@ -1,4 +1,4 @@
-import Sidebar from "@components/Sidebar";
+import Sidebar from "@components/SidebarComponents/Sidebar";
 import HeroSection from "@sections/HeroSection";
 import ProjectsSection from "@sections/ProjectsSection";
 import ContactSection from "@sections/ContactSection";

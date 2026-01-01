@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import ToggleButton from "./ToggleButton";
-import { sidebar as sidebarContent } from "../content/content.json";
+import ToggleButton from "../ToggleButton";
+import { sidebar as sidebarContent } from "../../content/content.json";
 import SidebarItem from "./SidebarItem";
 
 export default function Sidebar() {
