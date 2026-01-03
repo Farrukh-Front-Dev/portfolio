@@ -13,14 +13,14 @@ interface SocialLinksProps {
 
 export default function SocialLinks({ links }: SocialLinksProps) {
   return (
-    <div className="grid grid-cols-4 gap-1 place-items-center">
+    <div className="flex justify-center items-center space-x-2 md:space-x-3">
       {links.map((link, index) => (
         <a
           key={link.label}
           href={link.href}
           target={link.href.startsWith("mailto:") ? undefined : "_blank"}
           rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-          className="group relative aspect-square w-16 sm:w-10 md:w-20 rounded-full transition-all duration-500 hover:-translate-y-2 hover:scale-[1.06]"
+          className="group relative w-14 md:w-16 aspect-square rounded-full transition-all duration-500 hover:-translate-y-1 hover:scale-[1.05]"
           style={{ animationDelay: `${index * 0.1}s` }}
         >
           {/* Glass base */}
@@ -37,12 +37,9 @@ export default function SocialLinks({ links }: SocialLinksProps) {
             />
           </div>
 
-          {/* Content */}
-          <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-3 text-gray-800 dark:text-gray-100">
-            <div className="mb-2 text-2xl sm:text-3xl">{link.icon}</div>
-            {/* <h3 className="text-xs sm:text-sm font-semibold tracking-wide">
-              {link.label}
-            </h3> */}
+          {/* Rotating icon */}
+          <div className="relative z-10 flex h-full items-center justify-center text-gray-800 dark:text-gray-100">
+            <div className="text-2xl md:text-3xl animate-spin-slow">{link.icon}</div>
           </div>
         </a>
       ))}

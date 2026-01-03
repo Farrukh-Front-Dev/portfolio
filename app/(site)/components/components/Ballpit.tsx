@@ -850,6 +850,7 @@ interface BallpitProps {
 const Ballpit: React.FC<BallpitProps> = ({ className = '', followCursor = true, ...props }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const spheresInstanceRef = useRef<CreateBallpitReturn | null>(null);
+  const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -868,7 +869,12 @@ const Ballpit: React.FC<BallpitProps> = ({ className = '', followCursor = true, 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <canvas className={`${className} w-full h-full`} ref={canvasRef} />;
+  return  <canvas
+    ref={canvasRef}
+    className={`${className} w-full h-full ${
+      isMobile ? 'pointer-events-none' : ''
+    }`}
+  />
 };
 
 export default Ballpit;

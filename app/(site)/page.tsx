@@ -3,6 +3,7 @@ import HeroSection from "@sections/HeroSection";
 import ProjectsSection from "@sections/ProjectsSection";
 import ContactSection from "@sections/ContactSection";
 import AboutSection from './sections/AboutSection';
+import Footer from "@sections/Footer";
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
         <AboutSection/>
         <ProjectsSection />
         <ContactSection />
+        <Footer/>
       </main>
     </>
   );
