@@ -9,13 +9,11 @@
     "copyright": "© 2024 Farrukh. All rights reserved."
   },
   "hero": {
-  "title": "Farrukh — Frontend Engineer, React Specialist",
-  "subtitlePrefix": "I build",
-  "subtitleSuffix": "with clean design, robust structure, and modern JavaScript tooling.",
-  "cta": "About Me"
-},
-
-
+    "title": "Farrukh — Frontend Engineer, React Specialist",
+    "subtitlePrefix": "I build",
+    "subtitleSuffix": "with clean design, robust structure, and modern JavaScript tooling.",
+    "cta": "About Me"
+  },
 
   "projects": [
     {
@@ -38,57 +36,10 @@
     }
   ],
 
-  
   "about": {
     "intro": {
       "heading": "About Me",
       "text": "Frontend Engineer specializing in React and Next.js, focused on building modern, scalable, and maintainable web applications with clean architecture and strong UI engineering practices."
-    },
-
-    "skills": {
-      "groups": [
-        {
-          "title": "Frontend Core",
-          "items": [
-            "React",
-            "Next.js",
-            "TypeScript",
-            "JavaScript (ES6+)"
-          ]
-        },
-        {
-          "title": "State & Animation",
-          "items": [
-            "Redux",
-            "Framer Motion"
-          ]
-        },
-        {
-          "title": "Styling & UI",
-          "items": [
-            "Tailwind CSS",
-            "ShadCN UI",
-            "Responsive Design"
-          ]
-        },
-        {
-          "title": "Backend & Data",
-          "items": [
-            "Node.js",
-            "Express",
-            "MongoDB",
-            "PostgreSQL"
-          ]
-        },
-        {
-          "title": "Tooling & DevOps",
-          "items": [
-            "Git / GitHub",
-            "Docker",
-            "Linux (Ubuntu)"
-          ]
-        }
-      ]
     },
 
     "timeline": [
@@ -128,7 +79,7 @@
     "phone": "+9988888114171",
     "linkedin": "https://www.linkedin.com/in/farrukhdjumayev",
     "telegram": "http://t.me/Farrukh_Djumayev",
-    "github": "https://github.com/farrukh",
+    "github": "https://github.com/Farrukh-Front-Dev",
     "instagram": "https://instagram.com/farrukh.djumayev"
   },
   "sidebar": [

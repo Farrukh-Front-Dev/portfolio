@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { FaHtml5, FaCss3Alt, FaReact, FaGit, FaDocker } from "react-icons/fa";
-import { SiJavascript, SiTypescript, SiNextdotjs, SiRedux, SiReduxsaga, SiTailwindcss, SiReact, SiSass, SiFramer } from "react-icons/si";
+import { FaHtml5, FaCss3Alt, FaReact, FaGit, FaDocker, FaGithub } from "react-icons/fa";
+import { SiJavascript, SiTypescript, SiNextdotjs, SiRedux, SiReduxsaga, SiTailwindcss, SiReact, SiSass, SiFramer, SiEslint, SiPrettier, SiPostman } from "react-icons/si";
+import { TbBrandVscode } from "react-icons/tb";
 import { MdOutlineDevices } from "react-icons/md";
 
 export type SkillItem = {
@@ -37,18 +38,19 @@ export const skillGroups: SkillGroup[] = [
   items: [
     { name: "Tailwind CSS", icon: <SiTailwindcss /> },
     { name: "ShadCN UI", icon: <SiReact /> },        // ShadCN UI uchun React icon ishlatiladi
-    { name: "CSS Modules", icon: <SiTailwindcss /> },
-    { name: "Sass / SCSS", icon: <SiSass /> },
     { name: "Responsive Design", icon: <MdOutlineDevices /> }, // Material icon
     { name: "Framer Motion", icon: <SiFramer /> }   // Animations
   ]
 }
 ,
   {
-    title: "Tooling & Workflow",
-    items: [
-      { name: "Git", icon: <FaGit /> },
-      { name: "Docker", icon: <FaDocker /> }
-    ]
-  }
+  title: "Tooling & Workflow",
+  items: [
+    { name: "Git", icon: <FaGit /> },
+    { name: "GitHub", icon: <FaGithub /> },
+    { name: "Docker", icon: <FaDocker /> },
+    { name: "Postman", icon: <SiPostman /> }
+  ]
+}
+
 ];

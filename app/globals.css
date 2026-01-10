@@ -311,5 +311,6 @@ html.dark body::before {
 .animate-spin-slow {
   animation: spin-slow 4s linear infinite;
 }
-
-
+* {
+  cursor: none;
+}

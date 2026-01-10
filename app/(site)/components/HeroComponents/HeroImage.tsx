@@ -26,11 +26,12 @@ export default function HeroImage() {
       "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
   };
 
+  // Endi double click sayt fullscreen qiladi
   const handleDoubleClick = () => {
     if (document.fullscreenElement) {
-      document.exitFullscreen();
+      document.exitFullscreen().catch(() => {});
     } else {
-      document.documentElement.requestFullscreen();
+      document.documentElement.requestFullscreen().catch(() => {});
     }
   };
 
@@ -49,14 +50,18 @@ export default function HeroImage() {
                    backdrop-blur-xl
                    transition-transform duration-500 ease-out
                    transform-style-preserve-3d
-                   cursor-zoom-in"
+                   cursor-zoom-in
+                   select-none"
+        onDragStart={(e) => e.preventDefault()}
+        onContextMenu={(e) => e.preventDefault()}
       >
         <Image
           src="/farrukhPic.jpeg"
           alt="Farrukh"
           fill
-          className="object-cover"
+          className="object-cover select-none pointer-events-none"
           priority
+          draggable={false}
         />
       </div>
     </div>

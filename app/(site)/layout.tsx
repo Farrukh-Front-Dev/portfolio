@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
-import VisitorInput from "./components/visitorPage/VisitorInput"; // <-- shu yerda import qilamiz
+import VisitorInput from "./components/visitorPage/VisitorInput";
+import MagnifierCursor from "@components/ui/MagnifierCursor"; // <-- shu yerda import qilamiz
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-          <VisitorInput /> {/* <-- shu yerda input component ko‘rinadi */}
+          <VisitorInput />
+          <MagnifierCursor/>
           {children}
         </ThemeProvider>
       </body>

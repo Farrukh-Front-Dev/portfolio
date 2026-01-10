@@ -9,6 +9,7 @@ interface TimelineProps {
 export default function Timeline({ items }: TimelineProps) {
   return (
     <section className="mt-24">
+      
       <h2 className="text-2xl sm:text-3xl font-bold mb-12
                      bg-linear-to-r from-gray-900 to-gray-700
                      dark:from-white dark:to-gray-300
