@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { FaHtml5, FaCss3Alt, FaReact, FaGit, FaDocker } from "react-icons/fa";
-import { SiJavascript, SiTypescript, SiNextdotjs, SiRedux, SiTailwindcss } from "react-icons/si";
+import { SiJavascript, SiTypescript, SiNextdotjs, SiRedux, SiReduxsaga, SiTailwindcss, SiReact, SiSass, SiFramer } from "react-icons/si";
+import { MdOutlineDevices } from "react-icons/md";
 
 export type SkillItem = {
   name: string;
@@ -27,15 +28,22 @@ export const skillGroups: SkillGroup[] = [
     items: [
       { name: "React", icon: <FaReact /> },
       { name: "Next.js", icon: <SiNextdotjs /> },
-      { name: "Redux Toolkit", icon: <SiRedux /> }
+      { name: "Redux Toolkit", icon: <SiRedux /> },
+      { name: "RTK Query", icon: <SiRedux /> }
     ]
   },
-  {
-    title: "Styling & UI",
-    items: [
-      { name: "Tailwind CSS", icon: <SiTailwindcss /> }
-    ]
-  },
+{
+  title: "Styling & UI",
+  items: [
+    { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+    { name: "ShadCN UI", icon: <SiReact /> },        // ShadCN UI uchun React icon ishlatiladi
+    { name: "CSS Modules", icon: <SiTailwindcss /> },
+    { name: "Sass / SCSS", icon: <SiSass /> },
+    { name: "Responsive Design", icon: <MdOutlineDevices /> }, // Material icon
+    { name: "Framer Motion", icon: <SiFramer /> }   // Animations
+  ]
+}
+,
   {
     title: "Tooling & Workflow",
     items: [
