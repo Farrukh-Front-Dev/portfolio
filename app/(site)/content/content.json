@@ -15,27 +15,6 @@
     "cta": "About Me"
   },
 
-  "projects": [
-    {
-      "name": "Portfolio Website",
-      "description": "Personal portfolio built with Next.js, Tailwind CSS, and TypeScript. Features dark/light mode toggle, glassmorphism design, liquid glass effects, and fully responsive layouts.",
-      "link": "https://github.com/farrukh/portfolio",
-      "demo": "#hero"
-    },
-    {
-      "name": "E-commerce Platform",
-      "description": "Full-stack e-commerce application with Node.js backend, React frontend, and MongoDB database. Includes user authentication, shopping cart functionality, and payment integration.",
-      "link": "https://github.com/farrukh/ecommerce",
-      "demo": "#projects"
-    },
-    {
-      "name": "Blog Application",
-      "description": "MERN stack blog platform with user authentication, post management, comment system, and real-time notifications. Built with modern web development best practices.",
-      "link": "https://github.com/farrukh/blog",
-      "demo": "#projects"
-    }
-  ],
-
   "about": {
     "intro": {
       "heading": "About Me",
