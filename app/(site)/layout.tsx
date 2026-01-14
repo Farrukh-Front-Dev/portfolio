@@ -37,7 +37,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
           <VisitorInput />
-          <MagnifierCursor/>
+          <div className="hidden md:block">
+            <MagnifierCursor />
+          </div>
           {children}
         </ThemeProvider>
       </body>

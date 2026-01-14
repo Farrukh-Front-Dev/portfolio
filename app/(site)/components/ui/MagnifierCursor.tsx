@@ -59,7 +59,7 @@ export default function MagnifierCursor(): JSX.Element {
       <div
         ref={glassRef}
         className="fixed pointer-events-none z-9999
-                   rounded-full border border-white/30
+                   rounded-full border border-red-900 dark:border-white/30
                    mix-blend-difference"
         style={{
           width: SIZE,
@@ -72,7 +72,7 @@ export default function MagnifierCursor(): JSX.Element {
         ref={dotRef}
         className="fixed pointer-events-none z-10000
                    w-2 h-2 rounded-full
-                   bg-white shadow"
+                   bg-gray-900 dark:bg-white shadow"
       />
     </>
   );
