@@ -43,36 +43,39 @@ export default function SidebarItem({
     >
       {/* Tooltip */}
       <div
-        className={`absolute bottom-16 md:bottom-auto md:right-24 lg:right-28 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 px-4 lg:px-5 py-3 rounded-2xl backdrop-blur-3xl border border-white/30 dark:border-white/20 whitespace-nowrap text-xs lg:text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out ${
-          hoveredId === item.id
-            ? "opacity-100 scale-100 visible"
-            : "opacity-0 scale-95 invisible"
-        }`}
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
-          boxShadow:
-            hoveredId === item.id
-              ? "0 12px 40px rgba(0, 0, 0, 0.22), inset 0 1px 2px rgba(255,255,255,0.5), inset 0 0 25px rgba(255,255,255,0.3)"
-              : "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
-          WebkitBackdropFilter: "blur(24px)",
-          backdropFilter: "blur(24px)",
-          borderRadius: "20px",
-        }}
-      >
-        <span className="block text-gray-900 dark:text-gray-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
-          {getLabel(item.id)}
-        </span>
-        <div
-          className={`absolute w-0 h-0 border-l-[5px] border-y-[5px] border-y-transparent -bottom-2 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:left-auto md:right-0 md:translate-x-3 ${
-            hoveredId === item.id ? "block" : "hidden"
-          }`}
-          style={{
-            borderLeftColor: "rgba(255,255,255,0.35)",
-            filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.25))",
-          }}
-        />
-      </div>
+  className={`absolute bottom-16 md:bottom-auto md:right-24 lg:right-28 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 px-4 lg:px-5 py-3 rounded-2xl backdrop-blur-3xl border border-white/30 dark:border-white/20 whitespace-nowrap text-xs lg:text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out ${
+    hoveredId === item.id
+      ? "opacity-100 scale-100 visible"
+      : "opacity-0 scale-95 invisible"
+  }`}
+  style={{
+    background:
+      "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
+    boxShadow:
+      hoveredId === item.id
+        ? "0 12px 40px rgba(0, 0, 0, 0.22), inset 0 1px 2px rgba(255,255,255,0.5), inset 0 0 25px rgba(255,255,255,0.3)"
+        : "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
+    WebkitBackdropFilter: "blur(24px)",
+    backdropFilter: "blur(24px)",
+    borderRadius: "20px",
+  }}
+>
+  <span className="block text-gray-900 dark:text-gray-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+    {getLabel(item.id)}
+  </span>
+
+  {/* Triangle arrow: faqat desktopda ko‘rinadi */}
+  <div
+    className={`hidden md:absolute w-0 h-0 border-l-[5px] border-y-[5px] border-y-transparent -bottom-2 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:left-auto md:right-0 md:translate-x-3 ${
+      hoveredId === item.id ? "block" : ""
+    }`}
+    style={{
+      borderLeftColor: "rgba(255,255,255,0.35)",
+      filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.25))",
+    }}
+  />
+</div>
+
 
       {/* Icon + Liquid Glass */}
       <a
