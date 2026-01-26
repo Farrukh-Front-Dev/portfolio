@@ -9,9 +9,7 @@ export default function VisitorInput() {
   const [showInput, setShowInput] = useState(true);
   const pathname = usePathname();
 
-  // ================================
-  // BODY + SITE SCROLL + INTERACTION BLOCK
-  // ================================
+  // BODY + SITE SCROLL BLOCK
   useEffect(() => {
     const main = document.querySelector("main");
     const sidebar = document.querySelector("aside");
@@ -27,9 +25,7 @@ export default function VisitorInput() {
     }
   }, [showInput]);
 
-  // ================================
   // VISITOR INIT + HAR VISIT LOG
-  // ================================
   useEffect(() => {
     let visitorId = localStorage.getItem("visitor_id");
     const storedName = localStorage.getItem("visitor_name");
@@ -47,10 +43,7 @@ export default function VisitorInput() {
         name: storedName,
         type: "visit",
         page: pathname,
-        userAgent: navigator.userAgent,
-        language: navigator.language,
         screen: `${window.screen.width}x${window.screen.height}`,
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       }),
     });
 
@@ -72,10 +65,7 @@ export default function VisitorInput() {
         name,
         type: "first_visit",
         page: pathname,
-        userAgent: navigator.userAgent,
-        language: navigator.language,
-        screen: `${screen.width}x${screen.height}`,
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        screen: `${window.screen.width}x${window.screen.height}`,
       }),
     });
 

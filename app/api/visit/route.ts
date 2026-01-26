@@ -5,24 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 ================================= */
 function parseUserAgent(ua: string) {
   const isMobile = /Mobi|Android|iPhone/i.test(ua);
-
-  let os = "Unknown OS";
-  if (ua.includes("Windows")) os = "Windows";
-  else if (ua.includes("Mac OS")) os = "macOS";
-  else if (ua.includes("Linux")) os = "Linux";
-  else if (ua.includes("Android")) os = "Android";
-  else if (ua.includes("iPhone")) os = "iOS";
-
-  let browser = "Unknown Browser";
-  if (ua.includes("Chrome") && !ua.includes("Edg")) browser = "Chrome";
-  else if (ua.includes("Firefox")) browser = "Firefox";
-  else if (ua.includes("Safari") && !ua.includes("Chrome")) browser = "Safari";
-  else if (ua.includes("Edg")) browser = "Edge";
-
   return {
     device: isMobile ? "Mobile" : "Desktop",
-    os,
-    browser,
   };
 }
 
@@ -31,12 +15,9 @@ export async function POST(req: NextRequest) {
     name,
     visitorId,
     userAgent,
-    language,
     screen,
-    timezone,
-    type = "visit",
-    page = "/",
     location: clientLocation = null, // frontenddan kelgan GPS
+    type = "visit",
   } = await req.json();
 
   /* ================================
@@ -51,15 +32,12 @@ export async function POST(req: NextRequest) {
      2. GEO LOCATION (IP orqali, fallback)
   ================================= */
   let ipLocation = "Unknown";
-  let isp = "Unknown";
-
   if (ip !== "unknown") {
     try {
       const geoRes = await fetch(`http://ip-api.com/json/${ip}`);
       const geo = await geoRes.json();
       if (geo.status === "success") {
         ipLocation = `${geo.country} / ${geo.city}`;
-        isp = geo.isp;
       }
     } catch {
       // xatolik bo‘lsa sukut saqlanadi
@@ -69,38 +47,25 @@ export async function POST(req: NextRequest) {
   /* ================================
      3. USER AGENT PARSE
   ================================= */
-  const { device, os, browser } = parseUserAgent(userAgent || "");
+  const { device } = parseUserAgent(userAgent || "");
 
   /* ================================
      4. EVENT TYPE
   ================================= */
-  const eventTitle =
-    type === "first_visit" ? "🆕 First Visit" : "🔁 Visit";
+  const eventTitle = type === "first_visit" ? "🆕 First Visit" : "🔁 Visit";
 
   /* ================================
-     5. TELEGRAM MESSAGE
+     5. TELEGRAM MESSAGE (minimal)
   ================================= */
   const message = `
 ${eventTitle} — Portfolio
 
 👤 Ism: ${name || "Kiritilmagan"}
-🆔 Visitor ID: ${visitorId}
 
-📍 Joylashuv (GPS): ${clientLocation ? `${clientLocation.lat}, ${clientLocation.lng}` : "Not Provided"}
-📍 Joylashuv (IP): ${ipLocation}
-🌐 Internet provayder: ${isp}
-🌍 Vaqt zonasi: ${timezone}
+📍 Joylashuv: ${ipLocation}
 
-📄 Sahifa: ${page}
+💻 Qurilma: ${device}
 🖥 Ekran: ${screen}
-🗣 Til: ${language}
-
-💻 Qurilma:
-— Turi: ${device}
-— OS: ${os}
-— Brauzer: ${browser}
-
-🕒 Vaqt: ${new Date().toLocaleString()}
 `;
 
   /* ================================
