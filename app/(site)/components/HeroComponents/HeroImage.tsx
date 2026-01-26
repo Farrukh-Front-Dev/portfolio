@@ -56,7 +56,7 @@ export default function HeroImage() {
         onContextMenu={(e) => e.preventDefault()}
       >
         <Image
-          src="/farrukhPic.jpeg"
+          src="/image.png"
           alt="Farrukh"
           fill
           className="object-cover select-none pointer-events-none"
