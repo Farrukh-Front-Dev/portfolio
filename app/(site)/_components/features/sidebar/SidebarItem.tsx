@@ -1,3 +1,4 @@
+import { memo, useCallback, useMemo } from "react";
 import { FaHome, FaUser, FaLaptopCode, FaEnvelope } from "react-icons/fa";
 
 interface Props {
@@ -7,44 +8,59 @@ interface Props {
   setHoveredId: (id: string | null) => void;
 }
 
-export default function SidebarItem({
+const LABELS: Record<string, string> = {
+  hero: "Home",
+  about: "About",
+  projects: "Projects",
+  contact: "Contact",
+};
+
+const ICON_PROPS = { className: "w-6 h-6 lg:w-7 lg:h-7 relative z-10" };
+
+const SidebarItem = memo(function SidebarItem({
   item,
   activeSection,
   hoveredId,
   setHoveredId,
 }: Props) {
-  const getLabel = (id: string) =>
-    ({
-      hero: "Home",
-      about: "About",
-      projects: "Projects",
-      contact: "Contact",
-    }[id] || "");
+  const getLabel = useCallback((id: string) => LABELS[id] || "", []);
 
-  const getIcon = (id: string) => {
-    const props = { className: "w-6 h-6 lg:w-7 lg:h-7 relative z-10" };
+  const getIcon = useCallback((id: string) => {
     switch (id) {
       case "hero":
-        return <FaHome {...props} />;
+        return <FaHome {...ICON_PROPS} />;
       case "about":
-        return <FaUser {...props} />;
+        return <FaUser {...ICON_PROPS} />;
       case "projects":
-        return <FaLaptopCode {...props} />;
+        return <FaLaptopCode {...ICON_PROPS} />;
       case "contact":
-        return <FaEnvelope {...props} />;
+        return <FaEnvelope {...ICON_PROPS} />;
+      default:
+        return null;
     }
-  };
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    setHoveredId(item.id);
+  }, [item.id, setHoveredId]);
+
+  const handleMouseLeave = useCallback(() => {
+    setHoveredId(null);
+  }, [setHoveredId]);
+
+  const isHovered = useMemo(() => hoveredId === item.id, [hoveredId, item.id]);
+  const isActive = useMemo(() => activeSection === item.id, [activeSection, item.id]);
 
   return (
     <div
       className="relative group"
-      onMouseEnter={() => setHoveredId(item.id)}
-      onMouseLeave={() => setHoveredId(null)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Tooltip */}
       <div
   className={`absolute md:bottom-auto md:right-24 lg:right-28 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 px-4 lg:px-5 py-3 rounded-2xl backdrop-blur-3xl border border-white/30 dark:border-white/20 whitespace-nowrap text-xs lg:text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out ${
-    hoveredId === item.id
+    isHovered
       ? "opacity-100 scale-100 visible"
       : "opacity-0 scale-95 invisible"
   }`}
@@ -53,7 +69,7 @@ export default function SidebarItem({
     background:
       "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
     boxShadow:
-      hoveredId === item.id
+      isHovered
         ? "0 12px 40px rgba(0, 0, 0, 0.22), inset 0 1px 2px rgba(255,255,255,0.5), inset 0 0 25px rgba(255,255,255,0.3)"
         : "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
     WebkitBackdropFilter: "blur(24px)",
@@ -68,7 +84,7 @@ export default function SidebarItem({
   {/* Triangle arrow: faqat desktopda ko'rinadi */}
   <div
     className={`hidden md:absolute w-0 h-0 border-l-[5px] border-y-[5px] border-y-transparent md:bottom-auto md:top-1/2 md:left-auto md:right-0 md:translate-x-3 ${
-      hoveredId === item.id ? "md:block" : ""
+      isHovered ? "md:block" : ""
     }`}
     style={{
       borderLeftColor: "rgba(255,255,255,0.35)",
@@ -82,13 +98,13 @@ export default function SidebarItem({
       <a
         href={`#${item.id}`}
         className={`relative p-3 lg:p-4 rounded-full transition-all duration-400 ease-out ${
-          activeSection === item.id ? "scale-110" : "scale-100"
+          isActive ? "scale-110" : "scale-100"
         } hover:-translate-y-3 group/link block will-change-transform`}
         style={{
           transform:
-            activeSection === item.id
+            isActive
               ? "scale(1.1) translateZ(20px)"
-              : hoveredId === item.id
+              : isHovered
               ? "translateZ(20px)"
               : "translateZ(0px)",
         }}
@@ -98,7 +114,7 @@ export default function SidebarItem({
           <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400" />
           <div
             className={`absolute inset-0 transition-opacity duration-700 ${
-              activeSection === item.id
+              isActive
                 ? "opacity-80"
                 : "opacity-0 group-hover/link:opacity-50"
             }`}
@@ -114,4 +130,6 @@ export default function SidebarItem({
       </a>
     </div>
   );
-}
+});
+
+export default SidebarItem;

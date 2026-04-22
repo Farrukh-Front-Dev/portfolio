@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 
 export default function HeroImage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!containerRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
@@ -18,21 +18,21 @@ export default function HeroImage() {
 
     containerRef.current.style.transform =
       `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     if (!containerRef.current) return;
     containerRef.current.style.transform =
       "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
-  };
+  }, []);
 
-  const handleDoubleClick = () => {
+  const handleDoubleClick = useCallback(() => {
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     } else {
       document.documentElement.requestFullscreen().catch(() => {});
     }
-  };
+  }, []);
 
   return (
     <div className="flex-1 flex justify-center md:justify-start items-center w-full md:w-auto">

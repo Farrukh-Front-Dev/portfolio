@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useEffect, useRef } from "react";
+import { JSX, useEffect, useRef, useCallback } from "react";
 
 const LERP = 0.12; // smoothlik darajasi
 const SIZE = 56;  // tashqi cursor diametri
@@ -13,6 +13,11 @@ export default function MagnifierCursor(): JSX.Element {
   const current = useRef({ x: 0, y: 0 });
   const frame = useRef<number | null>(null);
 
+  const onMouseMove = useCallback((e: MouseEvent): void => {
+    mouse.current.x = e.clientX;
+    mouse.current.y = e.clientY;
+  }, []);
+
   useEffect(() => {
     // Accessibility: reduced motion
     const prefersReducedMotion = window.matchMedia(
@@ -20,11 +25,6 @@ export default function MagnifierCursor(): JSX.Element {
     ).matches;
 
     if (prefersReducedMotion) return;
-
-    const onMouseMove = (e: MouseEvent): void => {
-      mouse.current.x = e.clientX;
-      mouse.current.y = e.clientY;
-    };
 
     const animate = (): void => {
       current.current.x += (mouse.current.x - current.current.x) * LERP;
@@ -49,9 +49,12 @@ export default function MagnifierCursor(): JSX.Element {
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
-      if (frame.current) cancelAnimationFrame(frame.current);
+      if (frame.current !== null) {
+        cancelAnimationFrame(frame.current);
+        frame.current = null;
+      }
     };
-  }, []);
+  }, [onMouseMove]);
 
   return (
     <>

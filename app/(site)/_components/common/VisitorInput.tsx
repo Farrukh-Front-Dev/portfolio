@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import FlipCard from "./FlipCard";
+import { retryFetch } from "@lib/retry";
+import { trackError } from "@lib/monitoring";
 
 export default function VisitorInput() {
   const [name, setName] = useState("");
@@ -25,8 +27,10 @@ export default function VisitorInput() {
     }
   }, [showInput]);
 
-  // VISITOR INIT + HAR VISIT LOG
+  // VISITOR INIT + HAR VISIT LOG with retry logic
   useEffect(() => {
+    const abortController = new AbortController();
+
     let visitorId = localStorage.getItem("visitor_id");
     const storedName = localStorage.getItem("visitor_name");
 
@@ -35,7 +39,8 @@ export default function VisitorInput() {
       localStorage.setItem("visitor_id", visitorId);
     }
 
-    fetch("/api/visit", {
+    // Track visit with retry logic
+    retryFetch("/api/visit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -45,32 +50,58 @@ export default function VisitorInput() {
         page: pathname,
         screen: `${window.screen.width}x${window.screen.height}`,
       }),
+      signal: abortController.signal,
+    }, {
+      maxRetries: 2,
+      initialDelay: 500,
+    }).catch((err) => {
+      if (err.name !== "AbortError") {
+        trackError(err, { context: "visit_tracking" });
+      }
     });
 
-    if (storedName) setShowInput(false);
+    return () => abortController.abort();
   }, [pathname]);
 
-  const handleSubmit = async () => {
+  // Separate effect for showing/hiding input based on stored name
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const storedName = localStorage.getItem("visitor_name");
+    if (storedName) {
+      setShowInput(false);
+    }
+  }, []);
+
+  const handleSubmit = useCallback(async () => {
     if (!name.trim()) return;
     const visitorId = localStorage.getItem("visitor_id");
     if (!visitorId) return;
 
     localStorage.setItem("visitor_name", name);
 
-    await fetch("/api/visit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        visitorId,
-        name,
-        type: "first_visit",
-        page: pathname,
-        screen: `${window.screen.width}x${window.screen.height}`,
-      }),
-    });
+    try {
+      await retryFetch("/api/visit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          visitorId,
+          name,
+          type: "first_visit",
+          page: pathname,
+          screen: `${window.screen.width}x${window.screen.height}`,
+        }),
+      }, {
+        maxRetries: 2,
+        initialDelay: 500,
+      });
+    } catch (err) {
+      trackError(err instanceof Error ? err : new Error(String(err)), { 
+        context: "first_visit_tracking" 
+      });
+    }
 
     setShowInput(false);
-  };
+  }, [name, pathname]);
 
   if (!showInput) return null;
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import content from "@content/content.json";
 import { projects } from "@content/ProjectsContent";
 
@@ -53,20 +54,24 @@ export default function ProjectsSection() {
             {/* Preview area */}
             <div className="relative h-48 sm:h-56 overflow-hidden z-10">
               {/* Light image */}
-              <img
+              <Image
                 src={project.imageLight}
                 alt={project.name}
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="w-full h-full object-cover block dark:hidden"
+                loading="lazy"
               />
 
               {/* Dark image (agar mavjud bo'lsa) */}
               {project.imageDark && (
-                <img
+                <Image
                   src={project.imageDark}
                   alt={project.name}
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="w-full h-full object-cover hidden dark:block"
+                  loading="lazy"
                 />
               )}
 

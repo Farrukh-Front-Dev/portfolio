@@ -1,19 +1,23 @@
 "use client";
+import { memo, useCallback } from "react";
 import { useTheme } from "@context/ThemeContext";
-// import { IoSunnyOutline } from "react-icons/io5";
 import { BsMoonStarsFill } from "react-icons/bs";
-// import { MdSunny } from "react-icons/md";
 import { IoIosSunny } from "react-icons/io";
 
-export default function ToggleButton() {
+const ToggleButton = memo(function ToggleButton() {
   const { darkMode, toggleDarkMode } = useTheme();
+
+  const handleClick = useCallback(() => {
+    toggleDarkMode();
+  }, [toggleDarkMode]);
 
   return (
     <button
-      onClick={toggleDarkMode}
-      className="relative p-3 rounded-full transition-all duration-700 ease-out hover:scale-110 group cursor-pointer will-change-transform"
+      onClick={handleClick}
+      className="relative p-2.5 rounded-full transition-all duration-700 ease-out hover:scale-110 group cursor-pointer will-change-transform"
       title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
       style={{ filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15))" }}
+      aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
     >
       {/* Background Layer - Liquid Glass */}
       <div className="absolute inset-0 rounded-full overflow-hidden">
@@ -39,29 +43,28 @@ export default function ToggleButton() {
 
       {/* Icon Container */}
       <div className="relative z-20 flex items-center justify-center">
-  {/* Sun icon */}
-  <IoIosSunny
-    className={`
-      w-5 h-5 text-yellow-500 absolute
+        {/* Sun icon */}
+        <IoIosSunny
+          className={`
+      w-4 h-4 text-yellow-500 absolute
       transition-all duration-700 ease-in-out
       ${darkMode
-        ? "opacity-100 rotate-0 scale-100"
-        : "opacity-0 rotate-180 scale-50"}
+              ? "opacity-100 rotate-0 scale-100"
+              : "opacity-0 rotate-180 scale-50"}
     `}
-  />
+        />
 
-  {/* Moon icon */}
-  <BsMoonStarsFill
-    className={`
-      w-4 h-4 text-gray-700 absolute
+        {/* Moon icon */}
+        <BsMoonStarsFill
+          className={`
+      w-3.5 h-3.5 text-gray-700 absolute
       transition-all duration-700 ease-in-out
       ${darkMode
-        ? "opacity-0 -rotate-180 scale-50"
-        : "opacity-100 rotate-0 scale-100"}
+              ? "opacity-0 -rotate-180 scale-50"
+              : "opacity-100 rotate-0 scale-100"}
     `}
-  />
-</div>
-
+        />
+      </div>
 
       {/* Enhanced Glow Effect */}
       <div
@@ -85,4 +88,6 @@ export default function ToggleButton() {
       />
     </button>
   );
-}
+});
+
+export default ToggleButton;

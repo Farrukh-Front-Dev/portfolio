@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useLayoutEffect, ReactNode, useMemo, useCallback } from "react";
 
 interface ThemeContextType {
   darkMode: boolean;
@@ -13,8 +13,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [darkMode, setDarkMode] = useState(true);
   const [mounted, setMounted] = useState(false);
 
-  // Load saved preference on mount
-  useEffect(() => {
+  // Initialize theme on mount
+  useLayoutEffect(() => {
     setMounted(true);
 
     const saved = localStorage.getItem("theme");
@@ -25,6 +25,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const shouldBeDark = saved ? saved === "dark" : prefersDark;
     setDarkMode(shouldBeDark);
 
+    // Apply theme immediately
     if (shouldBeDark) {
       document.documentElement.classList.add("dark");
     } else {
@@ -33,7 +34,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Apply theme changes
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!mounted) return;
 
     if (darkMode) {
@@ -45,12 +46,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [darkMode, mounted]);
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode = useCallback(() => {
     setDarkMode((prev) => !prev);
-  };
+  }, []);
+
+  // Memoize context value to prevent unnecessary re-renders
+  const contextValue = useMemo(
+    () => ({ darkMode, toggleDarkMode }),
+    [darkMode, toggleDarkMode]
+  );
 
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );

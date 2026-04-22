@@ -1,14 +1,31 @@
 "use client";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import Sidebar from "@components/features/sidebar/Sidebar";
 import { HeroSection, ProjectsSection, ContactSection, AboutSection, Footer } from "@components/sections";
-import LightRays from "@components/effects/LightRays";
-import Particles from "@components/effects/Particles";
 import { useTheme } from "@context/ThemeContext";
+import { initializeWebVitals } from "../_lib/monitoring";
+
+// Lazy load heavy components
+const LightRays = dynamic(() => import("@components/effects/LightRays"), {
+  loading: () => null,
+  ssr: false,
+});
+
+const Particles = dynamic(() => import("@components/effects/Particles"), {
+  loading: () => null,
+  ssr: false,
+});
 
 export default function Page() {
   const { darkMode } = useTheme();
 
   const particleColors = darkMode ? ["#ffffff", "#aaaaaa"] : ["#000000", "#555555"];
+
+  // Initialize Web Vitals monitoring
+  useEffect(() => {
+    initializeWebVitals();
+  }, []);
 
   return (
     <>
