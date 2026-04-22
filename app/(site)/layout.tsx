@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { ThemeProvider } from "./context/ThemeContext";
-import VisitorInput from "./components/visitorPage/VisitorInput";
-import MagnifierCursor from "@components/ui/MagnifierCursor"; // <-- shu yerda import qilamiz
+import { ThemeProvider } from "@context/ThemeContext";
+import VisitorInput from "@components/common/VisitorInput";
+import MagnifierCursor from "@components/ui/MagnifierCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

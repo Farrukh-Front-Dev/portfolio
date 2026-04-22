@@ -1,45 +1,92 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { env } from "@lib/env";
+import { logger } from "@lib/logger";
+import { validateContactForm, ValidationError } from "@lib/validators";
+import { isRateLimited, getClientIp, RateLimitError } from "@lib/rateLimit";
+import { HTTP_STATUS } from "@lib/constants";
+import type { ApiResponse, ContactFormData } from "@types";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest): Promise<NextResponse<ApiResponse>> {
   try {
-    const { name, email, message } = await req.json();
+    // Get client IP for rate limiting
+    const clientIp = getClientIp(req);
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { status: "error", message: "All fields are required" },
-        { status: 400 }
-      );
+    // Check rate limit
+    if (isRateLimited(clientIp)) {
+      logger.warn("Rate limit exceeded", { ip: clientIp });
+      throw new RateLimitError();
     }
 
-    const BOT_TOKEN = "8332103517:AAFkQ0oh0k4L0RUgu7mVlu54ZOFH0XC8k4k";
-    const CHAT_ID = 991729905;
+    // Parse request body
+    const body = await req.json();
+    const { name, email, message } = body as ContactFormData;
 
-    if (!BOT_TOKEN || !CHAT_ID) {
-      return NextResponse.json(
-        { status: "error", message: "Bot token or chat ID not set" },
-        { status: 500 }
-      );
-    }
+    // Validate input
+    validateContactForm({ name, email, message });
 
-    const text = `📩 New Contact Message\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    logger.info("Contact form validated", { email });
 
-    const res = await fetch(
-      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+    // Send to Telegram
+    const text = `📩 New Contact Message\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+
+    const telegramResponse = await fetch(
+      `https://api.telegram.org/bot${env.telegram.botToken}/sendMessage`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text }),
+        body: JSON.stringify({
+          chat_id: env.telegram.chatId,
+          text,
+          parse_mode: "HTML",
+        }),
       }
     );
 
-    if (!res.ok) throw new Error("Telegram API request failed");
+    if (!telegramResponse.ok) {
+      const error = await telegramResponse.text();
+      logger.error("Telegram API error", { error, status: telegramResponse.status });
+      throw new Error("Failed to send message to Telegram");
+    }
 
-    return NextResponse.json({ status: "success" });
-  } catch (err) {
-    console.error(err);
+    logger.info("Message sent successfully", { email });
+
     return NextResponse.json(
-      { status: "error", message: "Failed to send message" },
-      { status: 500 }
+      {
+        status: "success",
+        message: "Message sent successfully!",
+      },
+      { status: HTTP_STATUS.OK }
+    );
+  } catch (err) {
+    if (err instanceof ValidationError) {
+      logger.warn("Validation error", { message: err.message });
+      return NextResponse.json(
+        {
+          status: "error",
+          message: err.message,
+        },
+        { status: HTTP_STATUS.BAD_REQUEST }
+      );
+    }
+
+    if (err instanceof RateLimitError) {
+      return NextResponse.json(
+        {
+          status: "error",
+          message: err.message,
+        },
+        { status: HTTP_STATUS.RATE_LIMITED }
+      );
+    }
+
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    logger.error("Contact API error", errorMessage);
+    return NextResponse.json(
+      {
+        status: "error",
+        message: "Failed to send message. Please try again later.",
+      },
+      { status: HTTP_STATUS.SERVER_ERROR }
     );
   }
 }
