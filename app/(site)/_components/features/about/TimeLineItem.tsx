@@ -25,25 +25,30 @@ export default function TimelineItem({ item }: { item: TimelineItemData }) {
 
       {/* Liquid glass card */}
       <div
-        className="relative z-10 p-4 rounded-2xl
-                   bg-white/10 dark:bg-white/5
-                   border border-white/20
-                   backdrop-blur-lg
-                   shadow-sm
-                   hover:shadow-xl
-                   hover:-translate-y-1 transition-all duration-500"
+        className="relative z-10 rounded-2xl
+                   group
+                   transition-all duration-500 ease-out
+                   hover:scale-105 hover:-translate-y-1
+                   overflow-hidden"
       >
-        {/* Liquid highlight */}
-        <div
-          className="absolute inset-0 opacity-0 hover:opacity-70 rounded-2xl transition-opacity duration-700"
-          style={{
-            background:
-              "radial-gradient(140% 140% at 50% 0%, rgba(59,130,246,0.15) 0%, rgba(168,85,247,0.1) 45%, transparent 100%)",
-          }}
-        />
+        {/* Base + Gradient + Glow */}
+        <div className="absolute inset-0 rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400 group-hover:bg-white/30 dark:group-hover:bg-white/15" />
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+            style={{
+              background:
+                "radial-gradient(135% 135% at 50% 0%, rgba(59,130,246,0.15) 0%, rgba(168,85,247,0.1) 50%, transparent 100%)",
+            }}
+          />
+        </div>
+
+        {/* Liquid shine effect */}
+        <span className="absolute -top-1 -left-8 w-16 h-32 bg-white/30 dark:bg-white/20 rounded-full blur-2xl
+                         transform rotate-45 scale-150 animate-pulse pointer-events-none"></span>
 
         {/* Content */}
-        <div className="relative z-10 space-y-1">
+        <div className="relative z-10 p-4 space-y-1">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             {item.subtitle} · {item.period}

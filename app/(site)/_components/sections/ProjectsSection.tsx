@@ -28,28 +28,30 @@ export default function ProjectsSection() {
             style={{ animationDelay: `${index * 0.15}s` }}
             className="
               relative group rounded-2xl overflow-hidden
-              bg-white/20 dark:bg-white/5
-              backdrop-blur-2xl backdrop-saturate-150
-              border border-white/40 dark:border-white/15
-              shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)]
-              transition-all duration-500
-              hover:-translate-y-2
               animate-fadeInUp
               flex flex-col
+              transition-all duration-500 ease-out
+              hover:scale-105 hover:-translate-y-2
             "
           >
-            {/* Liquid highlight */}
-            <div
-              className="
-                pointer-events-none absolute inset-0
-                bg-linear-to-br from-white/60 via-white/10 to-transparent
-                opacity-60 md:group-hover:opacity-90
-                transition-opacity duration-500
-              "
-            />
+            {/* Base + Gradient + Glow */}
+            <div className="absolute inset-0 rounded-2xl overflow-hidden z-0">
+              <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400 group-hover:bg-white/30 dark:group-hover:bg-white/15" />
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                style={{
+                  background:
+                    "radial-gradient(135% 135% at 50% 0%, rgba(59,130,246,0.15) 0%, rgba(168,85,247,0.1) 50%, transparent 100%)",
+                }}
+              />
+            </div>
+
+            {/* Liquid shine effect */}
+            <span className="absolute -top-1 -left-8 w-16 h-32 bg-white/30 dark:bg-white/20 rounded-full blur-2xl
+                             transform rotate-45 scale-150 animate-pulse pointer-events-none z-0"></span>
 
             {/* Preview area */}
-            <div className="relative h-48 sm:h-56 overflow-hidden">
+            <div className="relative h-48 sm:h-56 overflow-hidden z-10">
               {/* Light image */}
               <img
                 src={project.imageLight}
@@ -71,7 +73,7 @@ export default function ProjectsSection() {
               {/* Overlay: mobile always visible, desktop hover */}
               <div
                 className="
-                  absolute inset-0 z-10
+                  absolute inset-0 z-20
                   flex items-center justify-center gap-4
                   bg-black/30 backdrop-blur-md
 
@@ -87,10 +89,13 @@ export default function ProjectsSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    px-4 py-2 rounded-lg text-sm
-                    bg-white/80 text-gray-900
-                    hover:bg-white
-                    transition
+                    px-4 py-2 rounded-lg text-sm font-semibold
+                    bg-white/20 dark:bg-white/10
+                    backdrop-blur-xl
+                    border border-white/50 dark:border-white/40
+                    text-gray-900 dark:text-white
+                    hover:bg-white/30 dark:hover:bg-white/20
+                    transition-all duration-300
                   "
                 >
                   {labels.viewCode}
@@ -101,11 +106,13 @@ export default function ProjectsSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    px-4 py-2 rounded-lg text-sm
-                    bg-white/20 text-white
-                    border border-white/40
-                    hover:bg-white/30
-                    transition
+                    px-4 py-2 rounded-lg text-sm font-semibold
+                    bg-white/20 dark:bg-white/10
+                    backdrop-blur-xl
+                    border border-white/50 dark:border-white/40
+                    text-gray-900 dark:text-white
+                    hover:bg-white/30 dark:hover:bg-white/20
+                    transition-all duration-300
                   "
                 >
                   {labels.viewDemo}
@@ -114,7 +121,7 @@ export default function ProjectsSection() {
             </div>
 
             {/* Text content */}
-            <div className="relative p-6 space-y-4 grow flex flex-col">
+            <div className="relative p-6 space-y-4 grow flex flex-col z-10">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 {project.name}
               </h3>

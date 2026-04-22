@@ -67,14 +67,26 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         flex flex-col gap-6
         p-8 mb-16
         rounded-3xl
-        backdrop-blur-2xl
-        bg-white/10
-        border border-white/20
-        shadow-[0_8px_32px_rgba(0,0,0,0.12)]
+        group
+        transition-all duration-500 ease-out
+        overflow-hidden
       "
     >
-      {/* subtle glass highlight */}
-      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-linear-to-br from-white/20 via-transparent to-transparent" />
+      {/* Base + Gradient + Glow */}
+      <div className="absolute inset-0 rounded-3xl overflow-hidden z-0">
+        <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400 group-hover:bg-white/30 dark:group-hover:bg-white/15" />
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+          style={{
+            background:
+              "radial-gradient(135% 135% at 50% 0%, rgba(59,130,246,0.15) 0%, rgba(168,85,247,0.1) 50%, transparent 100%)",
+          }}
+        />
+      </div>
+
+      {/* Liquid shine effect */}
+      <span className="absolute -top-1 -left-16 w-20 h-40 bg-white/30 dark:bg-white/20 rounded-full blur-2xl
+                       transform rotate-45 scale-150 animate-pulse pointer-events-none z-0"></span>
 
       <input
         type="text"
@@ -88,11 +100,11 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           relative z-10
           w-full
           rounded-xl
-          bg-white/20
+          bg-white/20 dark:bg-white/10
           px-4 py-3
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
-          border border-white/30
+          border border-white/30 dark:border-white/20
           backdrop-blur-md
           focus:outline-none focus:ring-2 focus:ring-blue-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
@@ -112,11 +124,11 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           relative z-10
           w-full
           rounded-xl
-          bg-white/20
+          bg-white/20 dark:bg-white/10
           px-4 py-3
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
-          border border-white/30
+          border border-white/30 dark:border-white/20
           backdrop-blur-md
           focus:outline-none focus:ring-2 focus:ring-blue-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
@@ -136,11 +148,11 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           relative z-10
           w-full
           rounded-xl
-          bg-white/20
+          bg-white/20 dark:bg-white/10
           px-4 py-3
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
-          border border-white/30
+          border border-white/30 dark:border-white/20
           backdrop-blur-md
           resize-none
           focus:outline-none focus:ring-2 focus:ring-blue-400/60
@@ -156,18 +168,33 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           relative z-10
           mt-2
           rounded-xl
-          bg-linear-to-r from-blue-500/80 to-cyan-500/80
           px-6 py-3
           font-semibold text-white
-          backdrop-blur-md
-          shadow-lg
-          transition
-          hover:scale-[1.02]
-          hover:shadow-xl
+          transition-all duration-300
+          group/btn
+          overflow-hidden
           disabled:opacity-50 disabled:cursor-not-allowed
         "
       >
-        {loading ? "Sending..." : "Send Message"}
+        {/* Base + Gradient + Glow */}
+        <div className="absolute inset-0 rounded-xl overflow-hidden">
+          <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400 group-hover/btn:bg-white/30 dark:group-hover/btn:bg-white/15" />
+          <div
+            className="absolute inset-0 opacity-0 group-hover/btn:opacity-60 transition-opacity duration-500"
+            style={{
+              background:
+                "radial-gradient(135% 135% at 50% 0%, rgba(59,130,246,0.15) 0%, rgba(168,85,247,0.1) 50%, transparent 100%)",
+            }}
+          />
+        </div>
+
+        {/* Liquid shine effect */}
+        <span className="absolute -top-1 -left-16 w-20 h-40 bg-white/30 dark:bg-white/20 rounded-full blur-2xl
+                         transform rotate-45 scale-150 animate-pulse pointer-events-none"></span>
+
+        <span className="relative z-10">
+          {loading ? "Sending..." : "Send Message"}
+        </span>
       </button>
 
       {success && (
