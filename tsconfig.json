@@ -15,8 +15,12 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["app/(site)/components/*"],
-      "@sections/*": ["app/(site)/sections/*"]
+      "@components/*": ["app/(site)/_components/*"],
+      "@hooks/*": ["app/(site)/_hooks/*"],
+      "@lib/*": ["app/_lib/*"],
+      "@types": ["app/_types/index.ts"],
+      "@context/*": ["app/(site)/_context/*"],
+      "@content/*": ["app/(site)/_content/*"]
     },
     "plugins": [
       {
