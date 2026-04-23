@@ -1,5 +1,7 @@
 "use client";
 
+import GlassSurface from "../../components/GlassSurface";
+
 export interface TimelineItemData {
   type: "education" | "experience";
   title: string;
@@ -22,39 +24,43 @@ export default function TimelineItem({ item }: { item: TimelineItemData }) {
                       hover:scale-110" />
 
       {/* Card */}
-      <div className="relative z-10 rounded-xl sm:rounded-2xl
-                     group transition-all duration-500 ease-out
-                     hover:scale-[1.02] sm:hover:scale-105 hover:-translate-y-1
-                     overflow-hidden">
-        {/* Glass background */}
-        <div className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl 
-                         border border-white/50 dark:border-white/40 
-                         shadow-xl dark:shadow-2xl transition-all duration-400 
-                         group-hover:bg-white/30 dark:group-hover:bg-white/15" />
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500
-                         bg-gradient-radial from-blue-500/15 via-purple-500/10 to-transparent" />
-        </div>
-
-        {/* Shine effect */}
-        <span className="absolute -top-1 -left-8 w-16 h-32 bg-white/30 dark:bg-white/20 
-                        rounded-full blur-2xl transform rotate-45 scale-150 animate-pulse 
-                        pointer-events-none" />
-
-        {/* Content */}
-        <div className="relative z-10 p-3 sm:p-4 md:p-5 space-y-1 sm:space-y-2">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
-            {item.title}
-          </h3>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-            {item.subtitle} · {item.period}
-          </p>
-          <ul className="mt-2 sm:mt-3 space-y-1 list-disc list-inside text-xs sm:text-sm text-gray-600 dark:text-gray-300">
-            {item.description.map((point, index) => (
-              <li key={index}>{point}</li>
-            ))}
-          </ul>
-        </div>
+      <div className="relative z-10 group transition-all duration-500 ease-out
+                     hover:scale-[1.02] sm:hover:scale-105 hover:-translate-y-1">
+        <GlassSurface
+          width="auto"
+          height="auto"
+          borderRadius={20}
+          borderWidth={0.08}
+          brightness={50}
+          opacity={0.93}
+          blur={12}
+          displace={0}
+          backgroundOpacity={0.08}
+          saturation={1.1}
+          distortionScale={-200}
+          redOffset={0}
+          greenOffset={12}
+          blueOffset={24}
+          xChannel="R"
+          yChannel="G"
+          mixBlendMode="difference"
+          className="shadow-lg hover:shadow-xl transition-all duration-700"
+        >
+          {/* Content */}
+          <div className="p-3 sm:p-4 md:p-5 space-y-1 sm:space-y-2">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+              {item.title}
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+              {item.subtitle} · {item.period}
+            </p>
+            <ul className="mt-2 sm:mt-3 space-y-1 list-disc list-inside text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+              {item.description.map((point, index) => (
+                <li key={index}>{point}</li>
+              ))}
+            </ul>
+          </div>
+        </GlassSurface>
       </div>
     </div>
   );
