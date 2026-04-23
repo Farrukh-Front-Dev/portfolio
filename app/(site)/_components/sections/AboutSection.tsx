@@ -17,7 +17,7 @@ export default function AboutSection() {
   }));
 
   return (
-    <section id="about" className="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-16 sm:py-20 md:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <AboutIntro title={intro.heading} description={intro.text} />
     
       <TechStack groups={skillGroups} />

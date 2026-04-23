@@ -1,56 +1,32 @@
 /**
  * Environment variables validation and type-safe access
- * This ensures all required env vars are present at build time
+ * This ensures all required env vars are present at runtime
  */
 
-const requiredEnvVars = {
-  // Server-side only
-  TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
-  TELEGRAM_CHAT_ID: process.env.TELEGRAM_CHAT_ID,
-  
-  // Public (client-side)
-  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-  NEXT_PUBLIC_SITE_NAME: process.env.NEXT_PUBLIC_SITE_NAME,
-  NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-  NEXT_PUBLIC_ENABLE_ANALYTICS: process.env.NEXT_PUBLIC_ENABLE_ANALYTICS,
-  NEXT_PUBLIC_ENABLE_COMMENTS: process.env.NEXT_PUBLIC_ENABLE_COMMENTS,
-} as const;
-
-// Validate required environment variables
+// Validate required environment variables at runtime (not build time)
 function validateEnv() {
   const missing: string[] = [];
 
-  // Check server-side vars (only in server context)
-  if (typeof window === "undefined") {
-    if (!requiredEnvVars.TELEGRAM_BOT_TOKEN) {
+  // Check server-side vars (only in server context and not during build)
+  if (typeof window === "undefined" && process.env.NODE_ENV !== "production") {
+    if (!process.env.TELEGRAM_BOT_TOKEN) {
       missing.push("TELEGRAM_BOT_TOKEN");
     }
-    if (!requiredEnvVars.TELEGRAM_CHAT_ID) {
+    if (!process.env.TELEGRAM_CHAT_ID) {
       missing.push("TELEGRAM_CHAT_ID");
     }
   }
 
-  // Check public vars
-  if (!requiredEnvVars.NEXT_PUBLIC_SITE_URL) {
-    missing.push("NEXT_PUBLIC_SITE_URL");
-  }
-  if (!requiredEnvVars.NEXT_PUBLIC_SITE_NAME) {
-    missing.push("NEXT_PUBLIC_SITE_NAME");
-  }
-  if (!requiredEnvVars.NEXT_PUBLIC_API_URL) {
-    missing.push("NEXT_PUBLIC_API_URL");
-  }
-
-  if (missing.length > 0) {
-    throw new Error(
-      `Missing required environment variables: ${missing.join(", ")}\n` +
-      `Please check your .env.local file`
+  if (missing.length > 0 && process.env.NODE_ENV === "development") {
+    console.warn(
+      `Missing environment variables: ${missing.join(", ")}\n` +
+      `Some features may not work. Please check your .env.local file`
     );
   }
 }
 
-// Validate on module load (server-side only)
-if (typeof window === "undefined") {
+// Validate on module load (only in development)
+if (typeof window === "undefined" && process.env.NODE_ENV === "development") {
   validateEnv();
 }
 

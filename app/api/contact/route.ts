@@ -8,6 +8,18 @@ import type { ApiResponse, ContactFormData } from "@types";
 
 export async function POST(req: NextRequest): Promise<NextResponse<ApiResponse>> {
   try {
+    // Check if Telegram credentials are configured
+    if (!env.telegram.botToken || !env.telegram.chatId) {
+      logger.error("Telegram credentials not configured");
+      return NextResponse.json(
+        {
+          status: "error",
+          message: "Contact form is not configured. Please contact the site administrator.",
+        },
+        { status: HTTP_STATUS.SERVER_ERROR }
+      );
+    }
+
     // Get client IP for rate limiting
     const clientIp = getClientIp(req);
 

@@ -64,17 +64,21 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         relative
         w-full max-w-xl
         mx-auto
-        flex flex-col gap-6
-        p-8 mb-16
-        rounded-3xl
+        flex flex-col gap-4 sm:gap-5 md:gap-6
+        p-4 sm:p-6 md:p-8 mb-8 sm:mb-12 md:mb-16
+        rounded-2xl sm:rounded-3xl
         group
         transition-all duration-500 ease-out
         overflow-hidden
       "
     >
       {/* Base + Gradient + Glow */}
-      <div className="absolute inset-0 rounded-3xl overflow-hidden z-0">
-        <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400 group-hover:bg-white/30 dark:group-hover:bg-white/15" />
+      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden z-0">
+        <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl 
+                       border border-white/50 dark:border-white/40 
+                       shadow-lg sm:shadow-xl dark:shadow-xl dark:sm:shadow-2xl 
+                       transition-all duration-400 
+                       group-hover:bg-white/30 dark:group-hover:bg-white/15" />
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500"
           style={{
@@ -85,8 +89,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       </div>
 
       {/* Liquid shine effect */}
-      <span className="absolute -top-1 -left-16 w-20 h-40 bg-white/30 dark:bg-white/20 rounded-full blur-2xl
-                       transform rotate-45 scale-150 animate-pulse pointer-events-none z-0"></span>
+      <span className="absolute -top-1 -left-8 sm:-left-16 w-12 h-24 sm:w-20 sm:h-40 
+                      bg-white/30 dark:bg-white/20 rounded-full blur-xl sm:blur-2xl
+                      transform rotate-45 scale-150 animate-pulse pointer-events-none z-0"></span>
 
       <input
         type="text"
@@ -99,9 +104,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         className="
           relative z-10
           w-full
-          rounded-xl
+          rounded-lg sm:rounded-xl
           bg-white/20 dark:bg-white/10
-          px-4 py-3
+          px-3 py-2.5 sm:px-4 sm:py-3
+          text-sm sm:text-base
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
           border border-white/30 dark:border-white/20
@@ -123,9 +129,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         className="
           relative z-10
           w-full
-          rounded-xl
+          rounded-lg sm:rounded-xl
           bg-white/20 dark:bg-white/10
-          px-4 py-3
+          px-3 py-2.5 sm:px-4 sm:py-3
+          text-sm sm:text-base
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
           border border-white/30 dark:border-white/20
@@ -147,9 +154,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         className="
           relative z-10
           w-full
-          rounded-xl
+          rounded-lg sm:rounded-xl
           bg-white/20 dark:bg-white/10
-          px-4 py-3
+          px-3 py-2.5 sm:px-4 sm:py-3
+          text-sm sm:text-base
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
           border border-white/30 dark:border-white/20
@@ -166,19 +174,25 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         disabled={loading}
         className="
           relative z-10
-          mt-2
-          rounded-xl
-          px-6 py-3
+          mt-1 sm:mt-2
+          rounded-lg sm:rounded-xl
+          px-5 py-2.5 sm:px-6 sm:py-3
+          text-sm sm:text-base
           font-semibold text-white
           transition-all duration-300
           group/btn
           overflow-hidden
           disabled:opacity-50 disabled:cursor-not-allowed
+          hover:scale-[1.02] active:scale-95
         "
       >
         {/* Base + Gradient + Glow */}
-        <div className="absolute inset-0 rounded-xl overflow-hidden">
-          <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400 group-hover/btn:bg-white/30 dark:group-hover/btn:bg-white/15" />
+        <div className="absolute inset-0 rounded-lg sm:rounded-xl overflow-hidden">
+          <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl 
+                         border border-white/50 dark:border-white/40 
+                         shadow-lg sm:shadow-xl dark:shadow-xl dark:sm:shadow-2xl 
+                         transition-all duration-400 
+                         group-hover/btn:bg-white/30 dark:group-hover/btn:bg-white/15" />
           <div
             className="absolute inset-0 opacity-0 group-hover/btn:opacity-60 transition-opacity duration-500"
             style={{
@@ -189,8 +203,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         </div>
 
         {/* Liquid shine effect */}
-        <span className="absolute -top-1 -left-16 w-20 h-40 bg-white/30 dark:bg-white/20 rounded-full blur-2xl
-                         transform rotate-45 scale-150 animate-pulse pointer-events-none"></span>
+        <span className="absolute -top-1 -left-8 sm:-left-16 w-12 h-24 sm:w-20 sm:h-40 
+                        bg-white/30 dark:bg-white/20 rounded-full blur-xl sm:blur-2xl
+                        transform rotate-45 scale-150 animate-pulse pointer-events-none"></span>
 
         <span className="relative z-10">
           {loading ? "Sending..." : "Send Message"}
@@ -198,13 +213,13 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       </button>
 
       {success && (
-        <p className="relative z-10 text-center text-sm text-emerald-400">
+        <p className="relative z-10 text-center text-xs sm:text-sm text-emerald-400">
           ✓ {success}
         </p>
       )}
 
       {error && (
-        <p className="relative z-10 text-center text-sm text-red-400">
+        <p className="relative z-10 text-center text-xs sm:text-sm text-red-400">
           ✗ {error}
         </p>
       )}

@@ -16,31 +16,31 @@ export default function ContactSection() {
 
   const contactLinks = [
     {
-      icon: <AiOutlineMail size={30} />,
+      icon: <AiOutlineMail size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8" />,
       label: "Email",
       href: `mailto:${contact.email}`,
       value: contact.email,
     },
     {
-      icon: <FaTelegramPlane size={30} />,
+      icon: <FaTelegramPlane size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8" />,
       label: "Telegram",
       href: contact.telegram,
       value: "@Farrukh_Djumayev",
     },
     {
-      icon: <FaLinkedin size={30} />,
+      icon: <FaLinkedin size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8" />,
       label: "LinkedIn",
       href: contact.linkedin,
       value: "farrukhdjumayev",
     },
     {
-      icon: <FaGithub size={30} />,
+      icon: <FaGithub size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8" />,
       label: "GitHub",
       href: contact.github,
       value: "Farrukh-Front-Dev",
     },
     {
-      icon: <FaInstagram size={30} />,
+      icon: <FaInstagram size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8" />,
       label: "Instagram",
       href: contact.instagram,
       value: "farrukh.djumayev",
@@ -67,13 +67,20 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-16 sm:py-30 md:py-32 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
     >
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight bg-linear-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent animate-fadeInUp">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold 
+                     mb-4 sm:mb-6 tracking-tight
+                     bg-linear-to-r from-gray-900 to-gray-700 
+                     dark:from-white dark:to-gray-300 
+                     bg-clip-text text-transparent animate-fadeInUp">
         {labels.getInTouch}
       </h2>
 
-      <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-16 max-w-2xl animate-fadeInUp animation-delay-200">
+      <p className="text-sm sm:text-base md:text-lg lg:text-xl 
+                    text-gray-600 dark:text-gray-400 
+                    mb-8 sm:mb-12 md:mb-16 max-w-2xl 
+                    animate-fadeInUp animation-delay-200">
         {labels.alwaysOpen}
       </p>
 

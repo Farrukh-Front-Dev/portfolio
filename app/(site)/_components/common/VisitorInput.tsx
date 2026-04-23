@@ -4,7 +4,6 @@ import { useEffect, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import FlipCard from "./FlipCard";
 import { retryFetch } from "@lib/retry";
-import { trackError } from "@lib/monitoring";
 
 export default function VisitorInput() {
   const [name, setName] = useState("");
@@ -55,8 +54,8 @@ export default function VisitorInput() {
       maxRetries: 2,
       initialDelay: 500,
     }).catch((err) => {
-      if (err.name !== "AbortError") {
-        trackError(err, { context: "visit_tracking" });
+      if (err.name !== "AbortError" && process.env.NODE_ENV === 'development') {
+        console.error("Visit tracking error:", err);
       }
     });
 
@@ -95,9 +94,9 @@ export default function VisitorInput() {
         initialDelay: 500,
       });
     } catch (err) {
-      trackError(err instanceof Error ? err : new Error(String(err)), { 
-        context: "first_visit_tracking" 
-      });
+      if (process.env.NODE_ENV === 'development') {
+        console.error("First visit tracking error:", err);
+      }
     }
 
     setShowInput(false);

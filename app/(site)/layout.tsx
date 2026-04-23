@@ -5,6 +5,7 @@ import { ThemeProvider } from "@context/ThemeContext";
 import VisitorInput from "@components/common/VisitorInput";
 import MagnifierCursor from "@components/ui/MagnifierCursor";
 import ErrorBoundary from "../_components/ErrorBoundary";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
