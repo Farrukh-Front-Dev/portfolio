@@ -12,7 +12,7 @@ interface ContactFormProps {
   }) => Promise<void>;
 }
 
-export default function ContactForm({ onSubmit }: ContactFormProps) {
+export default function ContactForm({ }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,8 +70,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         group
         transition-all duration-500 ease-out
         overflow-hidden
+        animate-fadeInUp
       "
-      style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
+      style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", animation: "fadeInUp 1s ease-out forwards" }}
     >
       {/* Base + Gradient + Glow - only dark mode */}
       <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden z-0 hidden dark:block">
@@ -119,8 +120,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           focus:outline-none focus:ring-2 focus:ring-blue-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
           transition
+          animate-fadeInUp
         "
-        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)", animationDelay: "100ms" }}
       />
 
       <input
@@ -145,8 +147,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           focus:outline-none focus:ring-2 focus:ring-gray-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
           transition
+          animate-fadeInUp
         "
-        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)", animationDelay: "150ms" }}
       />
 
       <textarea
@@ -172,8 +175,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           focus:outline-none focus:ring-2 focus:ring-blue-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
           transition
+          animate-fadeInUp
         "
-        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)", animationDelay: "200ms" }}
       />
 
       <button
@@ -191,8 +195,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           overflow-hidden
           disabled:opacity-50 disabled:cursor-not-allowed
           hover:scale-[1.02] active:scale-95
+          animate-fadeInUp
         "
-        style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
+        style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", animationDelay: "250ms" }}
       >
         {/* Base + Gradient + Glow - only dark mode */}
         <div className="absolute inset-0 rounded-full overflow-hidden hidden dark:block">

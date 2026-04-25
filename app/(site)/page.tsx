@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Sidebar from "@components/features/sidebar/Sidebar";
 import { HeroSection, ProjectsSection, ContactSection, AboutSection, Footer } from "@components/sections";
 import { useTheme } from "@context/ThemeContext";
+import { useSectionScroll } from "@hooks/useSectionScroll";
 
 // Lazy load heavy components
 const LightRays = dynamic(() => import("@components/effects/LightRays"), {
@@ -17,6 +18,7 @@ const Particles = dynamic(() => import("@components/effects/Particles"), {
 
 export default function Page() {
   const { darkMode } = useTheme();
+  useSectionScroll();
 
   const particleColors = darkMode ? ["#ffffff", "#aaaaaa"] : ["#000000", "#555555"];
 

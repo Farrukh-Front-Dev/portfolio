@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { ThemeProvider } from "@context/ThemeContext";
 import VisitorInput from "@components/common/VisitorInput";
@@ -7,13 +7,13 @@ import MagnifierCursor from "@components/ui/MagnifierCursor";
 import ErrorBoundary from "../_components/ErrorBoundary";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
 
@@ -57,7 +57,7 @@ export default function RootLayout({
         {/* Sitemap and RSS */}
         <link rel="sitemap" href="/sitemap.xml" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
         <ErrorBoundary>
           <ThemeProvider>
             <VisitorInput />

@@ -20,10 +20,10 @@ export default function HeroText({
   resumeHref,
 }: HeroTextProps) {
   return (
-    <div className="flex-1 flex flex-col justify-center items-start order-2 md:order-2 w-full md:w-auto gap-4">
+    <div className="flex-1 flex flex-col justify-center items-start order-2 md:order-2 w-full md:w-auto gap-4 mt-8 md:mt-0">
       {/* Title */}
       <h1
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-bold
+        className="text-2xl sm:text-3xl md:text-5xl lg:text-4xl font-bold
                    text-gray-900 dark:bg-linear-to-r dark:from-white dark:via-gray-100 dark:to-gray-300
                    dark:bg-clip-text dark:text-transparent
                    animate-fadeInUp pb-2"
@@ -33,7 +33,7 @@ export default function HeroText({
 
       {/* Subtitle with rotating text */}
       <p
-        className="text-base font-medium sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed
+        className="text-sm sm:text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed
                    animate-fadeInUp animation-delay-200"
       >
         <span>{subtitlePrefix} </span>

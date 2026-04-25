@@ -1,7 +1,19 @@
 import { ReactNode } from "react";
-import { FaHtml5, FaCss3Alt, FaReact, FaGit, FaDocker, FaGithub } from "react-icons/fa";
-import { SiJavascript, SiTypescript, SiNextdotjs, SiRedux, SiReduxsaga, SiTailwindcss, SiReact, SiSass, SiFramer, SiEslint, SiPrettier, SiPostman, SiAntdesign } from "react-icons/si";
-import { MdOutlineDevices } from "react-icons/md";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaReact,
+  FaGit,
+  FaDocker
+} from "react-icons/fa";
+import {
+  SiJavascript,
+  SiTypescript,
+  SiNextdotjs,
+  SiRedux,
+  SiTailwindcss,
+  SiPostman
+} from "react-icons/si";
 
 export type SkillItem = {
   name: string;
@@ -15,40 +27,29 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Frontend Core",
+    title: "Core",
     items: [
       { name: "HTML5", icon: <FaHtml5 /> },
       { name: "CSS3", icon: <FaCss3Alt /> },
-      { name: "JavaScript (ES6+)", icon: <SiJavascript /> },
+      { name: "JavaScript", icon: <SiJavascript /> },
       { name: "TypeScript", icon: <SiTypescript /> }
     ]
   },
   {
-    title: "Frameworks & Libraries",
+    title: "Frontend",
     items: [
       { name: "React", icon: <FaReact /> },
       { name: "Next.js", icon: <SiNextdotjs /> },
       { name: "Redux Toolkit", icon: <SiRedux /> },
-      { name: "RTK Query", icon: <SiRedux /> }
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> }
     ]
   },
-{
-  title: "Styling & UI",
-  items: [
-    { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-    { name: "shadcn/ui", icon: <SiReact /> },
-    { name: "Ant Design", icon: <SiAntdesign /> },
-    { name: "Framer Motion", icon: <SiFramer /> }
-  ]
-},
-{
-  title: "Tooling & Workflow",
-  items: [
-    { name: "Git", icon: <FaGit /> },
-    { name: "GitHub", icon: <FaGithub /> },
-    { name: "Docker", icon: <FaDocker /> },
-    { name: "Postman", icon: <SiPostman /> }
-  ]
-}
-
+  {
+    title: "Tools",
+    items: [
+      { name: "Git", icon: <FaGit /> },
+      { name: "Docker", icon: <FaDocker /> },
+      { name: "Postman", icon: <SiPostman /> }
+    ]
+  }
 ];

@@ -10,9 +10,11 @@ import {
   FaGithub,
   FaInstagram,
 } from "react-icons/fa";
+import { useScrollAnimation } from "@hooks/useScrollAnimation";
 
 export default function ContactSection() {
   const { contact, labels } = content;
+  const sectionRef = useScrollAnimation({ threshold: 0.05, rootMargin: "0px 0px -100px 0px" });
 
   const contactLinks = [
     {
@@ -66,6 +68,7 @@ export default function ContactSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="contact"
       className="py-12 sm:py-16 md:py-24 lg:py-32 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
     >
@@ -80,12 +83,17 @@ export default function ContactSection() {
       <p className="text-sm sm:text-base md:text-lg lg:text-xl 
                     text-gray-600 dark:text-gray-400 
                     mb-8 sm:mb-12 md:mb-16 max-w-2xl 
-                    animate-fadeInUp animation-delay-200">
+                    animate-fadeInUp animation-delay-100">
         {labels.alwaysOpen}
       </p>
 
-      <ContactForm onSubmit={handleSendMessage} />
-      <SocialLinks links={contactLinks} />
+      <div className="animate-fadeInUp animation-delay-200">
+        <ContactForm onSubmit={handleSendMessage} />
+      </div>
+
+      <div className="animate-fadeInUp animation-delay-300">
+        <SocialLinks links={contactLinks} />
+      </div>
     </section>
   );
 }

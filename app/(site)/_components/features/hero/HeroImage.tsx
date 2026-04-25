@@ -35,7 +35,7 @@ export default function HeroImage() {
   }, []);
 
   return (
-    <div className="flex-1 flex justify-center md:justify-start items-center w-full md:w-auto">
+    <div className="flex-1 flex justify-center md:justify-start items-center w-full md:w-auto mt-4 md:mt-0">
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}

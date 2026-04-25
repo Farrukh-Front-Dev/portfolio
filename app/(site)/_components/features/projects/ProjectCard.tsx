@@ -22,12 +22,11 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index, labels }: ProjectCardProps) {
   return (
     <article
-      style={{ animationDelay: `${index * 0.15}s` }}
-      className="relative group rounded-md sm:rounded-lg md:rounded-xl lg:rounded-2xl overflow-hidden animate-fadeInUp
+      style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
+      className="relative group rounded-md sm:rounded-lg md:rounded-xl lg:rounded-2xl overflow-hidden
                  flex flex-col transition-all duration-500 ease-out
                  hover:scale-[1.02] sm:hover:scale-[1.03] md:hover:scale-105 
                  hover:-translate-y-0.5 sm:hover:-translate-y-1 md:hover:-translate-y-2"
-      style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
     >
       {/* Liquid Glass Background - only dark mode */}
       <div className="absolute inset-0 rounded-md sm:rounded-lg md:rounded-xl lg:rounded-2xl overflow-hidden z-0 hidden dark:block">

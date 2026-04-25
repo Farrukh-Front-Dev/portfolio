@@ -57,78 +57,61 @@ const SidebarItem = memo(function SidebarItem({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+
+
       {/* Tooltip - Mobile */}
       <div
-        className={`absolute bottom-full left-1/2 -translate-x-1/2 md:hidden px-3 py-3 rounded-2xl dark:rounded-full whitespace-nowrap text-xs font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mb-2 ${
+        className={`absolute bottom-full left-1/2 -translate-x-1/2 md:hidden px-3 py-3 rounded-2xl whitespace-nowrap text-xs font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-9999 mb-2 ${
           isHovered
             ? "opacity-100 scale-100 visible"
             : "opacity-0 scale-95 invisible"
         }`}
-        style={{
-          background: "#ffffff",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-        }}
       >
-        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
-          {getLabel(item.id)}
-        </span>
-      </div>
-
-      {/* Tooltip - Mobile Dark Mode Overlay */}
-      <div
-        className={`absolute bottom-full left-1/2 -translate-x-1/2 md:hidden px-3 py-3 rounded-2xl dark:rounded-full whitespace-nowrap text-xs font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mb-2 hidden dark:block ${
-          isHovered
-            ? "opacity-100 scale-100 visible"
-            : "opacity-0 scale-95 invisible"
-        }`}
-        style={{
+        {/* Light Mode Background */}
+        <div className="absolute inset-0 rounded-2xl bg-white dark:hidden" style={{
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+        }} />
+        
+        {/* Dark Mode Glass Background */}
+        <div className="absolute inset-0 rounded-2xl hidden dark:block" style={{
           background: "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
           boxShadow: "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
           WebkitBackdropFilter: "blur(24px)",
           backdropFilter: "blur(24px)",
           border: "1px solid rgba(255,255,255,0.3)",
-        }}
-      >
-        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+        }} />
+        
+        <span className="relative block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
           {getLabel(item.id)}
         </span>
       </div>
 
       {/* Tooltip - Desktop */}
       <div
-        className={`hidden md:block absolute top-1/2 right-full -translate-y-1/2 md:rounded-full px-4 py-3 whitespace-nowrap text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mr-4 ${
+        className={`hidden md:block absolute top-1/2 right-full -translate-y-1/2 md:rounded-full px-4 py-3 whitespace-nowrap text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-9999 mr-4 ${
           isHovered
             ? "opacity-100 scale-100 visible"
             : "opacity-0 scale-95 invisible"
         }`}
         style={{
           transform: isHovered ? "translateY(calc(-50% + 12px))" : "translateY(-50%)",
-          background: "#ffffff",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
         }}
       >
-        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
-          {getLabel(item.id)}
-        </span>
-      </div>
-
-      {/* Tooltip - Desktop Dark Mode Overlay */}
-      <div
-        className={`hidden md:block absolute top-1/2 right-full -translate-y-1/2 md:rounded-full px-4 py-3 whitespace-nowrap text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mr-4 hidden dark:block ${
-          isHovered
-            ? "opacity-100 scale-100 visible"
-            : "opacity-0 scale-95 invisible"
-        }`}
-        style={{
-          transform: isHovered ? "translateY(calc(-50% + 12px))" : "translateY(-50%)",
+        {/* Light Mode Background */}
+        <div className="absolute inset-0 rounded-full bg-white dark:hidden" style={{
+          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.25)",
+        }} />
+        
+        {/* Dark Mode Glass Background */}
+        <div className="absolute inset-0 rounded-full hidden dark:block" style={{
           background: "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
           boxShadow: "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
           WebkitBackdropFilter: "blur(24px)",
           backdropFilter: "blur(24px)",
           border: "1px solid rgba(255,255,255,0.3)",
-        }}
-      >
-        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+        }} />
+        
+        <span className="relative block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
           {getLabel(item.id)}
         </span>
       </div>

@@ -9,25 +9,26 @@ export default function TechStack({ groups }: Props) {
 
   return (
     <section className="mb-16 sm:mb-20 md:mb-24">
-      <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 md:mb-10">Skills</h3>
+      <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 md:mb-10 animate-fadeInUp animation-delay-200">Skills</h3>
 
       <div className="space-y-8 sm:space-y-10">
-        {groups.map((group) => (
-          <div key={group.title}>
-            <h4 className="mb-3 sm:mb-4 font-medium text-sm sm:text-base text-gray-700 dark:text-gray-300">
+        {groups.map((group, groupIndex) => (
+          <div key={group.title} className="animate-fadeInUp" style={{ animationDelay: `${200 + (groupIndex + 1) * 100}ms` }}>
+            <h4 className="mb-3 sm:mb-4 font-medium text-sm sm:text-base text-gray-700 dark:text-gray-300 animate-fadeInUp" style={{ animationDelay: `${200 + (groupIndex + 1) * 100}ms` }}>
               {group.title}
             </h4>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {group.items.map((item) => (
+              {group.items.map((item, itemIndex) => (
                 <div
                   key={item.name}
                   className="relative p-3 sm:p-4 rounded-xl flex flex-col items-center gap-2
                              group transition-all duration-500 ease-out
                              hover:scale-105 hover:-translate-y-1 overflow-hidden
-                             bg-gray-100 dark:bg-transparent"
-                  style={{
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+                             bg-gray-100 dark:bg-transparent animate-fadeInUp"
+                  style={{ 
+                    animationDelay: `${200 + (groupIndex + 1) * 100 + itemIndex * 50}ms`,
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)"
                   }}
                 >
                   {/* Glass background - only dark mode */}
