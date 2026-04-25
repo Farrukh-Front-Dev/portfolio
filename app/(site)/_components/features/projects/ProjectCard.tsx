@@ -27,9 +27,10 @@ export default function ProjectCard({ project, index, labels }: ProjectCardProps
                  flex flex-col transition-all duration-500 ease-out
                  hover:scale-[1.02] sm:hover:scale-[1.03] md:hover:scale-105 
                  hover:-translate-y-0.5 sm:hover:-translate-y-1 md:hover:-translate-y-2"
+      style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
     >
-      {/* Liquid Glass Background */}
-      <div className="absolute inset-0 rounded-md sm:rounded-lg md:rounded-xl lg:rounded-2xl overflow-hidden z-0">
+      {/* Liquid Glass Background - only dark mode */}
+      <div className="absolute inset-0 rounded-md sm:rounded-lg md:rounded-xl lg:rounded-2xl overflow-hidden z-0 hidden dark:block">
         <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl 
                        border border-white/50 dark:border-white/40 
                        shadow-lg sm:shadow-xl dark:shadow-xl dark:sm:shadow-2xl transition-all duration-400 
@@ -40,10 +41,13 @@ export default function ProjectCard({ project, index, labels }: ProjectCardProps
              }} />
       </div>
 
-      {/* Liquid Shine Effect */}
+      {/* Light mode background */}
+      <div className="absolute inset-0 rounded-md sm:rounded-lg md:rounded-xl lg:rounded-2xl overflow-hidden z-0 dark:hidden bg-white" />
+
+      {/* Liquid Shine Effect - only dark mode */}
       <span className="absolute -top-1 -left-2 sm:-left-4 md:-left-8 w-4 h-8 sm:w-8 sm:h-16 md:w-16 md:h-32 
                       bg-white/30 dark:bg-white/20 rounded-full blur-xl sm:blur-2xl 
-                      transform rotate-45 scale-150 animate-pulse pointer-events-none z-0" />
+                      transform rotate-45 scale-150 dark:animate-pulse pointer-events-none z-0 hidden dark:block" />
 
       {/* Image Preview */}
       <div className="relative h-40 sm:h-44 md:h-48 lg:h-56 overflow-hidden z-10 rounded-t-md sm:rounded-t-lg md:rounded-t-xl lg:rounded-t-2xl">
@@ -91,8 +95,8 @@ export default function ProjectCard({ project, index, labels }: ProjectCardProps
                       transition-all duration-300
                       hover:scale-110 active:scale-95"
           >
-            {/* Liquid Glass Button Background */}
-            <div className="absolute inset-0 rounded-full overflow-hidden">
+            {/* Liquid Glass Button Background - only dark mode */}
+            <div className="absolute inset-0 rounded-full overflow-hidden hidden dark:block">
               <div className="absolute inset-0 bg-white/25 dark:bg-white/15 backdrop-blur-xl 
                              border border-white/60 dark:border-white/50 
                              shadow-lg transition-all duration-300 
@@ -102,12 +106,15 @@ export default function ProjectCard({ project, index, labels }: ProjectCardProps
                      background: "radial-gradient(circle at center, rgba(59,130,246,0.3) 0%, transparent 70%)"
                    }} />
             </div>
+
+            {/* Light mode button background - white with shadow */}
+            <div className="absolute inset-0 rounded-full overflow-hidden dark:hidden bg-white" style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }} />
             
-            {/* Button Shine */}
+            {/* Button Shine - only dark mode */}
             <span className="absolute -top-1 -left-2 w-4 h-8 bg-white/40 rounded-full blur-xl 
-                            transform rotate-45 scale-150 animate-pulse pointer-events-none" />
+                            transform rotate-45 scale-150 dark:animate-pulse pointer-events-none hidden dark:block" />
             
-            <FaGithub className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gray-900 dark:text-white drop-shadow-sm" />
+            <FaGithub className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gray-700 dark:text-white drop-shadow-sm" />
           </a>
 
           <a
@@ -122,8 +129,8 @@ export default function ProjectCard({ project, index, labels }: ProjectCardProps
                       transition-all duration-300
                       hover:scale-110 active:scale-95"
           >
-            {/* Liquid Glass Button Background */}
-            <div className="absolute inset-0 rounded-full overflow-hidden">
+            {/* Liquid Glass Button Background - only dark mode */}
+            <div className="absolute inset-0 rounded-full overflow-hidden hidden dark:block">
               <div className="absolute inset-0 bg-white/25 dark:bg-white/15 backdrop-blur-xl 
                              border border-white/60 dark:border-white/50 
                              shadow-lg transition-all duration-300 
@@ -133,12 +140,15 @@ export default function ProjectCard({ project, index, labels }: ProjectCardProps
                      background: "radial-gradient(circle at center, rgba(168,85,247,0.3) 0%, transparent 70%)"
                    }} />
             </div>
+
+            {/* Light mode button background - white with shadow */}
+            <div className="absolute inset-0 rounded-full overflow-hidden dark:hidden bg-white" style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }} />
             
-            {/* Button Shine */}
+            {/* Button Shine - only dark mode */}
             <span className="absolute -top-1 -left-2 w-4 h-8 bg-white/40 rounded-full blur-xl 
-                            transform rotate-45 scale-150 animate-pulse pointer-events-none" />
+                            transform rotate-45 scale-150 dark:animate-pulse pointer-events-none hidden dark:block" />
             
-            <FaExternalLinkAlt className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gray-900 dark:text-white drop-shadow-sm" />
+            <FaExternalLinkAlt className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gray-700 dark:text-white drop-shadow-sm" />
           </a>
         </div>
       </div>
@@ -148,7 +158,6 @@ export default function ProjectCard({ project, index, labels }: ProjectCardProps
         <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold 
                       text-gray-900 dark:text-white
                       transition-colors duration-300
-                      group-hover:text-blue-600 dark:group-hover:text-blue-400
                       line-clamp-1">
           {project.name}
         </h3>

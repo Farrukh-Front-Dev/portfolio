@@ -25,10 +25,10 @@ export default function SocialLinks({ links }: SocialLinksProps) {
                     rounded-full transition-all duration-500 
                     hover:-translate-y-1 hover:scale-105 
                     overflow-hidden animate-fadeInUp"
-          style={{ animationDelay: `${index * 0.1}s` }}
+          style={{ animationDelay: `${index * 0.1}s`, boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
         >
-          {/* Base + Gradient + Glow */}
-          <div className="absolute inset-0 rounded-full overflow-hidden">
+          {/* Base + Gradient + Glow - only dark mode */}
+          <div className="absolute inset-0 rounded-full overflow-hidden hidden dark:block">
             <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl 
                            border border-white/50 dark:border-white/40 
                            shadow-lg sm:shadow-xl dark:shadow-xl dark:sm:shadow-2xl 
@@ -43,14 +43,17 @@ export default function SocialLinks({ links }: SocialLinksProps) {
             />
           </div>
 
-          {/* Liquid shine effect */}
+          {/* Light mode background - white with shadow */}
+          <div className="absolute inset-0 rounded-full overflow-hidden dark:hidden bg-white" />
+
+          {/* Liquid shine effect - only dark mode */}
           <span className="absolute -top-1 -left-4 sm:-left-8 w-8 h-16 sm:w-16 sm:h-32 
                           bg-white/30 dark:bg-white/20 rounded-full blur-xl sm:blur-2xl
-                          transform rotate-45 scale-150 animate-pulse pointer-events-none"></span>
+                          transform rotate-45 scale-150 dark:animate-pulse pointer-events-none hidden dark:block"></span>
 
           {/* Icon */}
           <div className="relative z-10 flex h-full items-center justify-center 
-                         text-gray-800 dark:text-gray-100">
+                         text-gray-700 dark:text-gray-100">
             {link.icon}
           </div>
         </a>

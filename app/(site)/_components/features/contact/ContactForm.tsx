@@ -71,9 +71,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         transition-all duration-500 ease-out
         overflow-hidden
       "
+      style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
     >
-      {/* Base + Gradient + Glow */}
-      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden z-0">
+      {/* Base + Gradient + Glow - only dark mode */}
+      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden z-0 hidden dark:block">
         <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl 
                        border border-white/50 dark:border-white/40 
                        shadow-lg sm:shadow-xl dark:shadow-xl dark:sm:shadow-2xl 
@@ -88,10 +89,13 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         />
       </div>
 
-      {/* Liquid shine effect */}
+      {/* Light mode background */}
+      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden z-0 dark:hidden bg-white" />
+
+      {/* Liquid shine effect - only dark mode */}
       <span className="absolute -top-1 -left-8 sm:-left-16 w-12 h-24 sm:w-20 sm:h-40 
                       bg-white/30 dark:bg-white/20 rounded-full blur-xl sm:blur-2xl
-                      transform rotate-45 scale-150 animate-pulse pointer-events-none z-0"></span>
+                      transform rotate-45 scale-150 dark:animate-pulse pointer-events-none z-0 hidden dark:block"></span>
 
       <input
         type="text"
@@ -105,17 +109,18 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           relative z-10
           w-full
           rounded-lg sm:rounded-xl
-          bg-white/20 dark:bg-white/10
+          bg-white dark:bg-white/10
           px-3 py-2.5 sm:px-4 sm:py-3
           text-sm sm:text-base
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
-          border border-white/30 dark:border-white/20
-          backdrop-blur-md
+          border border-gray-300 dark:border-white/20
+          dark:backdrop-blur-md
           focus:outline-none focus:ring-2 focus:ring-blue-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
           transition
         "
+        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
       />
 
       <input
@@ -130,17 +135,18 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           relative z-10
           w-full
           rounded-lg sm:rounded-xl
-          bg-white/20 dark:bg-white/10
+          bg-white dark:bg-white/10
           px-3 py-2.5 sm:px-4 sm:py-3
           text-sm sm:text-base
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
-          border border-white/30 dark:border-white/20
-          backdrop-blur-md
-          focus:outline-none focus:ring-2 focus:ring-blue-400/60
+          border border-gray-300 dark:border-white/20
+          dark:backdrop-blur-md
+          focus:outline-none focus:ring-2 focus:ring-gray-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
           transition
         "
+        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
       />
 
       <textarea
@@ -155,18 +161,19 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           relative z-10
           w-full
           rounded-lg sm:rounded-xl
-          bg-white/20 dark:bg-white/10
+          bg-white dark:bg-white/10
           px-3 py-2.5 sm:px-4 sm:py-3
           text-sm sm:text-base
           text-gray-900 dark:text-white
           placeholder-gray-500 dark:placeholder-white/60
-          border border-white/30 dark:border-white/20
-          backdrop-blur-md
+          border border-gray-300 dark:border-white/20
+          dark:backdrop-blur-md
           resize-none
           focus:outline-none focus:ring-2 focus:ring-blue-400/60
           disabled:opacity-50 disabled:cursor-not-allowed
           transition
         "
+        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
       />
 
       <button
@@ -175,19 +182,20 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         className="
           relative z-10
           mt-1 sm:mt-2
-          rounded-lg sm:rounded-xl
-          px-5 py-2.5 sm:px-6 sm:py-3
+          rounded-full
+          px-8 py-2.5 sm:px-10 sm:py-3
           text-sm sm:text-base
-          font-semibold text-white
+          font-semibold text-gray-900 dark:text-white
           transition-all duration-300
           group/btn
           overflow-hidden
           disabled:opacity-50 disabled:cursor-not-allowed
           hover:scale-[1.02] active:scale-95
         "
+        style={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
       >
-        {/* Base + Gradient + Glow */}
-        <div className="absolute inset-0 rounded-lg sm:rounded-xl overflow-hidden">
+        {/* Base + Gradient + Glow - only dark mode */}
+        <div className="absolute inset-0 rounded-full overflow-hidden hidden dark:block">
           <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl 
                          border border-white/50 dark:border-white/40 
                          shadow-lg sm:shadow-xl dark:shadow-xl dark:sm:shadow-2xl 
@@ -202,10 +210,13 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           />
         </div>
 
-        {/* Liquid shine effect */}
+        {/* Light mode background - white */}
+        <div className="absolute inset-0 rounded-full overflow-hidden dark:hidden bg-white" />
+
+        {/* Liquid shine effect - only dark mode */}
         <span className="absolute -top-1 -left-8 sm:-left-16 w-12 h-24 sm:w-20 sm:h-40 
                         bg-white/30 dark:bg-white/20 rounded-full blur-xl sm:blur-2xl
-                        transform rotate-45 scale-150 animate-pulse pointer-events-none"></span>
+                        transform rotate-45 scale-150 dark:animate-pulse pointer-events-none hidden dark:block"></span>
 
         <span className="relative z-10">
           {loading ? "Sending..." : "Send Message"}

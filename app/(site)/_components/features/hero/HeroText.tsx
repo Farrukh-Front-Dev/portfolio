@@ -24,9 +24,9 @@ export default function HeroText({
       {/* Title */}
       <h1
         className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-bold
-                   bg-linear-to-r from-gray-900 via-gray-800 to-gray-700
-                   dark:from-white dark:via-gray-100 dark:to-gray-300
-                   bg-clip-text text-transparent animate-fadeInUp pb-2"
+                   text-gray-900 dark:bg-linear-to-r dark:from-white dark:via-gray-100 dark:to-gray-300
+                   dark:bg-clip-text dark:text-transparent
+                   animate-fadeInUp pb-2"
       >
         {title}
       </h1>
@@ -37,6 +37,7 @@ export default function HeroText({
                    animate-fadeInUp animation-delay-200"
       >
         <span>{subtitlePrefix} </span>
+        
         <RotatingText
           texts={[
             "modern interfaces",
@@ -45,11 +46,10 @@ export default function HeroText({
             "interactive experiences",  
           ]}
           mainClassName="inline-block px-3 sm:px-4 py-1 sm:py-2
-                            bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400
-                            dark:from-cyan-700 dark:via-blue-600 dark:to-purple-500
-                            text-black dark:text-white
+                            bg-gray-100 dark:bg-gradient-to-r dark:from-cyan-700 dark:via-blue-600 dark:to-purple-500
+                            text-gray-900 dark:text-white
                             font-semibold rounded-lg shadow-sm
-                            bg-opacity-70 dark:bg-opacity-50 backdrop-blur-sm"
+                            dark:bg-opacity-50 dark:backdrop-blur-sm"
           staggerFrom="last"
           initial={{ y: "100%" }}
           animate={{ y: 0 }}

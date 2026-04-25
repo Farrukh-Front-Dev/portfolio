@@ -71,9 +71,9 @@ export default function ContactSection() {
     >
       <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold 
                      mb-4 sm:mb-6 tracking-tight
-                     bg-linear-to-r from-gray-900 to-gray-700 
-                     dark:from-white dark:to-gray-300 
-                     bg-clip-text text-transparent animate-fadeInUp">
+                     text-gray-900
+                     dark:bg-linear-to-r dark:from-white dark:to-gray-300 
+                     dark:bg-clip-text dark:text-transparent animate-fadeInUp">
         {labels.getInTouch}
       </h2>
 

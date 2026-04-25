@@ -57,42 +57,81 @@ const SidebarItem = memo(function SidebarItem({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Tooltip */}
+      {/* Tooltip - Mobile */}
       <div
-  className={`absolute md:bottom-auto md:right-24 lg:right-28 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 px-4 lg:px-5 py-3 rounded-2xl backdrop-blur-3xl border border-white/30 dark:border-white/20 whitespace-nowrap text-xs lg:text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out ${
-    isHovered
-      ? "opacity-100 scale-100 visible"
-      : "opacity-0 scale-95 invisible"
-  }`}
-  style={{
-    bottom: "calc(100% + 12px)",
-    background:
-      "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
-    boxShadow:
-      isHovered
-        ? "0 12px 40px rgba(0, 0, 0, 0.22), inset 0 1px 2px rgba(255,255,255,0.5), inset 0 0 25px rgba(255,255,255,0.3)"
-        : "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
-    WebkitBackdropFilter: "blur(24px)",
-    backdropFilter: "blur(24px)",
-    borderRadius: "20px",
-  }}
->
-  <span className="block text-gray-900 dark:text-gray-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
-    {getLabel(item.id)}
-  </span>
+        className={`absolute bottom-full left-1/2 -translate-x-1/2 md:hidden px-3 py-3 rounded-2xl dark:rounded-full whitespace-nowrap text-xs font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mb-2 ${
+          isHovered
+            ? "opacity-100 scale-100 visible"
+            : "opacity-0 scale-95 invisible"
+        }`}
+        style={{
+          background: "#ffffff",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+        }}
+      >
+        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+          {getLabel(item.id)}
+        </span>
+      </div>
 
-  {/* Triangle arrow: faqat desktopda ko'rinadi */}
-  <div
-    className={`hidden md:absolute w-0 h-0 border-l-[5px] border-y-[5px] border-y-transparent md:bottom-auto md:top-1/2 md:left-auto md:right-0 md:translate-x-3 ${
-      isHovered ? "md:block" : ""
-    }`}
-    style={{
-      borderLeftColor: "rgba(255,255,255,0.35)",
-      filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.25))",
-    }}
-  />
-</div>
+      {/* Tooltip - Mobile Dark Mode Overlay */}
+      <div
+        className={`absolute bottom-full left-1/2 -translate-x-1/2 md:hidden px-3 py-3 rounded-2xl dark:rounded-full whitespace-nowrap text-xs font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mb-2 hidden dark:block ${
+          isHovered
+            ? "opacity-100 scale-100 visible"
+            : "opacity-0 scale-95 invisible"
+        }`}
+        style={{
+          background: "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
+          boxShadow: "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
+          WebkitBackdropFilter: "blur(24px)",
+          backdropFilter: "blur(24px)",
+          border: "1px solid rgba(255,255,255,0.3)",
+        }}
+      >
+        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+          {getLabel(item.id)}
+        </span>
+      </div>
 
+      {/* Tooltip - Desktop */}
+      <div
+        className={`hidden md:block absolute top-1/2 right-full -translate-y-1/2 md:rounded-full px-4 py-3 whitespace-nowrap text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mr-4 ${
+          isHovered
+            ? "opacity-100 scale-100 visible"
+            : "opacity-0 scale-95 invisible"
+        }`}
+        style={{
+          transform: isHovered ? "translateY(calc(-50% + 12px))" : "translateY(-50%)",
+          background: "#ffffff",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+        }}
+      >
+        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+          {getLabel(item.id)}
+        </span>
+      </div>
+
+      {/* Tooltip - Desktop Dark Mode Overlay */}
+      <div
+        className={`hidden md:block absolute top-1/2 right-full -translate-y-1/2 md:rounded-full px-4 py-3 whitespace-nowrap text-sm font-semibold tracking-wide pointer-events-none transition-all duration-500 ease-out z-50 mr-4 hidden dark:block ${
+          isHovered
+            ? "opacity-100 scale-100 visible"
+            : "opacity-0 scale-95 invisible"
+        }`}
+        style={{
+          transform: isHovered ? "translateY(calc(-50% + 12px))" : "translateY(-50%)",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.10) 60%, rgba(255,255,255,0.05) 100%)",
+          boxShadow: "0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.3)",
+          WebkitBackdropFilter: "blur(24px)",
+          backdropFilter: "blur(24px)",
+          border: "1px solid rgba(255,255,255,0.3)",
+        }}
+      >
+        <span className="block text-gray-900 dark:text-gray-100 dark:drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+          {getLabel(item.id)}
+        </span>
+      </div>
 
       {/* Icon + Liquid Glass */}
       <a
@@ -107,10 +146,11 @@ const SidebarItem = memo(function SidebarItem({
               : isHovered
               ? "translateZ(20px)"
               : "translateZ(0px)",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
         }}
       >
-        {/* Base + Gradient + Glow + Shimmer */}
-        <div className="absolute inset-0 rounded-full overflow-hidden">
+        {/* Base + Gradient + Glow + Shimmer - only dark mode */}
+        <div className="absolute inset-0 rounded-full overflow-hidden hidden dark:block">
           <div className="absolute inset-0 bg-white/20 dark:bg-white/12 backdrop-blur-3xl border border-white/50 dark:border-white/40 shadow-xl dark:shadow-2xl transition-all duration-400" />
           <div
             className={`absolute inset-0 transition-opacity duration-700 ${
@@ -124,7 +164,13 @@ const SidebarItem = memo(function SidebarItem({
             }}
           />
         </div>
-        <div className="relative z-20 flex items-center justify-center text-gray-700 dark:text-gray-200 transition-colors duration-700">
+
+        {/* Light mode - simple background, no blur */}
+        <div className="absolute inset-0 rounded-full overflow-hidden dark:hidden">
+          <div className="absolute inset-0 bg-white transition-all duration-400" />
+        </div>
+
+        <div className="relative flex items-center justify-center text-gray-700 dark:text-gray-200 transition-colors duration-700">
           {getIcon(item.id)}
         </div>
       </a>

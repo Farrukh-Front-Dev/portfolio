@@ -14,13 +14,13 @@ export default function ProjectsSection() {
     >
       <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold 
                      mb-6 sm:mb-8 md:mb-10 lg:mb-12 tracking-tight
-                     bg-linear-to-r from-gray-900 to-gray-600 
-                     dark:from-white dark:to-gray-300
-                     bg-clip-text text-transparent animate-fadeInUp">
+                     text-gray-900
+                     dark:bg-linear-to-r dark:from-white dark:to-gray-300
+                     dark:bg-clip-text dark:text-transparent animate-fadeInUp">
         {labels.projects}
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 md:gap-5 lg:gap-8">
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:gap-5 lg:gap-8">
         {projects.map((project, index) => (
           <ProjectCard
             key={project.name}

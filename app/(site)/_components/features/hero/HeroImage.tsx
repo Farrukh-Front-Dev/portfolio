@@ -43,10 +43,10 @@ export default function HeroImage() {
         onDoubleClick={handleDoubleClick}
         className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72
                    rounded-full overflow-hidden
-                   bg-white/5 dark:bg-white/10
-                   border border-white/20 dark:border-white/10
-                   shadow-lg dark:shadow-xl
-                   backdrop-blur-xl
+                   bg-white dark:bg-white/10
+                   border-2 border-gray-300 dark:border-white/10
+                   shadow-sm dark:shadow-xl
+                   dark:backdrop-blur-xl
                    transition-transform duration-500 ease-out
                    transform-style-preserve-3d
                    cursor-zoom-in

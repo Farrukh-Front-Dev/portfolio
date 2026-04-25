@@ -31,7 +31,7 @@ export default function Sidebar() {
     <>
       {/* Mobile Bottom Navigation */}
       <aside className="fixed bottom-0 left-0 right-0 h-20 md:hidden flex justify-center items-center p-2 z-50 pointer-events-auto">
-        <div className="flex gap-4 pointer-events-auto bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-full px-6 py-3 border border-white/20">
+        <div className="flex gap-4 pointer-events-auto bg-gray-100 dark:bg-white/5 dark:backdrop-blur-md rounded-full px-6 py-3 border border-gray-300 dark:border-white/20 dark:shadow-lg shadow-md">
           {sidebarItems}
         </div>
         {/* Theme Toggle in Mobile Sidebar */}
@@ -46,7 +46,7 @@ export default function Sidebar() {
         <ToggleButton />
         
         {/* Separator */}
-        <div className="w-12 h-px bg-white/20 my-4" />
+        {/* <div className="w-12 h-px bg-white/20 my-4" /> */}
         
         {/* Navigation Items */}
         <div className="flex flex-col gap-5 lg:gap-7 pointer-events-auto items-center flex-1 justify-center">
